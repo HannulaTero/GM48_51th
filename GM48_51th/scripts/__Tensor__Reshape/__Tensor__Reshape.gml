@@ -2,7 +2,7 @@
 
 /**
 * Reshapes the GPU data.
-* -> Frees the previous GPU data.
+* -> Frees the previous GPU data if surface layout changes.
 * 
 * @context Tensor
 * @param {Array<Real>} _shape   Tensor shape (ND).
@@ -12,7 +12,13 @@
 function __Tensor__Reshape(_shape, _layout=undefined)
 {
   // Remove previous GPU data.
-  self.Free();
+  var _layoutChange = false;
+  if (_layout == undefined)
+  || (array_equals(_layout, self.surfaceLayout) == false)
+  {
+    _layoutChange = true;
+    self.Free();
+  }
   
   
   // Initialize the tensor metadata.
@@ -30,35 +36,40 @@ function __Tensor__Reshape(_shape, _layout=undefined)
   }
   
   
-  // Calculate surface layout.
-  if (_layout == undefined)
+  // Calculate surface layout and update metadata.
+  if (_layoutChange == true)
   {
-    self.surfaceLayout[0] = ceil(sqrt(self.itemCount));
-    self.surfaceLayout[1] = ceil(self.itemCount / self.surfaceLayout[0]);
-  }
-  else
-  {
-    self.surfaceLayout[0] = _layout[0];
-    self.surfaceLayout[1] = _layout[1];
-    if (self.itemCount > (_layout[0] * _layout[1]))
+    // Get the layout.
+    if (_layout == undefined)
     {
-      throw("Given layout can't fit the shape!");
+      self.surfaceLayout[0] = ceil(sqrt(self.itemCount));
+      self.surfaceLayout[1] = ceil(self.itemCount / self.surfaceLayout[0]);
     }
+    else
+    {
+      self.surfaceLayout[0] = _layout[0];
+      self.surfaceLayout[1] = _layout[1];
+      if (self.itemCount > (_layout[0] * _layout[1]))
+      {
+        throw("Given layout can't fit the shape!");
+      }
+    }
+    
+  
+    // Pre-calculate texel sizes.
+    self.surfaceTexels[0] = (1.0 / self.surfaceLayout[0]);
+    self.surfaceTexels[1] = (1.0 / self.surfaceLayout[1]);
+  
+    // Update surface capacity.
+    self.surfaceCapacity = self.surfaceLayout[0] * self.surfaceLayout[1];
+  
+  
+    // Fill the surface meta-data.
+    self.surfaceMeta[0] = self.surfaceTexels[0];
+    self.surfaceMeta[1] = self.surfaceTexels[1];
+    self.surfaceMeta[2] = self.surfaceLayout[0];
+    self.surfaceMeta[3] = self.itemCount;
   }
-  
-  // Pre-calculate texel sizes.
-  self.surfaceTexels[0] = (1.0 / self.surfaceLayout[0]);
-  self.surfaceTexels[1] = (1.0 / self.surfaceLayout[1]);
-  
-  // Update surface capacity.
-  self.surfaceCapacity = self.surfaceLayout[0] * self.surfaceLayout[1];
-  
-  
-  // Fill the surface meta-data.
-  self.surfaceMeta[0] = self.surfaceTexels[0];
-  self.surfaceMeta[1] = self.surfaceTexels[1];
-  self.surfaceMeta[2] = self.surfaceLayout[0];
-  self.surfaceMeta[3] = self.itemCount;
   
   
   // Update the gradient shape.

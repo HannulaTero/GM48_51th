@@ -33,16 +33,55 @@ function __Tensor__OpTensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis)
   }
   
   
+  // Resize the helper tensors.
+  if (lhsTemp.surfaceCapacity < _lhs.itemCount)
+  {
+    var _log  = ceil(log2(_lhs.itemCount));
+    var _logW = ceil(_log * 0.5);
+    var _logH = (_log - _logW);
+    var _w = power(2.0, _logW);
+    var _h = power(2.0, _logH);
+    lhsTemp.Reshape(_lhs.shape, [ _w, _h ]);
+  }
+  
+  if (rhsTemp.surfaceCapacity < _rhs.itemCount)
+  {
+    var _log  = ceil(log2(_lhs.itemCount));
+    var _logW = ceil(_log * 0.5);
+    var _logH = (_log - _logW);
+    var _w = power(2.0, _logW);
+    var _h = power(2.0, _logH);
+    rhsTemp.Reshape(_rhs.shape, [ _w, _h ]);
+  }
+  
+  
+  // Find how the axis need to be moved.
+  var _lhsDstAxis = [ ];
+  var _rhsDstAxis = [ ];
+  for(var i = 0; i < _axisCount; i++)
+  {
+    array_push(_lhsDstAxis[i], _lhsAxis[i]);
+    array_push(_rhsDstAxis[i], _rhsAxis[i]);
+  }
+  
+  for(var i = 0; i < self.rank; i++)
+  {
+    if (array_get_index(_lhsAxis, i) < 0)
+    {
+      array_push(_lhsDstAxis[i], i);
+    }
+    if (array_get_index(_rhsAxis, i) < 0)
+    {
+      array_push(_rhsDstAxis[i], i);
+    }
+  }
+  
+  
   // Permute the inputs.
   var _srcAxis = array_create_ext(_axisCount, function(_index)
   {
     return _index;
   });
-  
-  for(var i = 0; i < _axisCount; i++)
-  {
-    
-  }
   
   lhsTemp.Permute(_lhs, _srcAxis, _lhsDstAxis);
   rhsTemp.Permute(_rhs, _srcAxis, _rhsDstAxis);
