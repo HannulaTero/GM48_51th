@@ -1,4 +1,4 @@
-// Date: 2026-11-14T08:08:12.2535271+02:00
+// Date: 2026-11-14T17:21:05.0909869+02:00
 #line 33
 //=============================================================
 // begin import SHD_TensorOp_Unary.fsh.__shady_macro_BODY
@@ -18,6 +18,9 @@ uniform vec4 FSH_Src_Meta;
 // begin import SHD_Utility_Permute.fsh.__shady_export
 #line 34
 #region IMPORTS.
+// begin import SHD_Utility_IModDiv.fsh.__shady_export
+#line 34
+#region IMPORTS.
 // begin import SHD_Utility_IDiv.fsh.__shady_export
 #line 34
 float IDiv(float lhs, float rhs)
@@ -31,17 +34,28 @@ float IDiv(float lhs, float rhs)
 #line 34
 #endregion
 #line 34
+vec2 IModDiv(float lhs, float rhs)
+#line 34
+{
+#line 34
+  vec2 result;
+#line 34
+  result.y = IDiv(lhs, rhs);
+#line 34
+  result.x = lhs - result.y * rhs;
+#line 34
+  return result;
+#line 34
+}
+// end import SHD_Utility_IModDiv.fsh.__shady_export
+#line 34
+#endregion
+#line 34
 vec2 Permute(vec4 meta, float idx)
 #line 34
 {
 #line 34
-  vec2 pos;
-#line 34
-  pos.y = IDiv(idx, meta.z);
-#line 34
-  pos.x = idx - pos.y * meta.z;
-#line 34
-  return pos;
+  return IModDiv(idx, meta.z);
 #line 34
 }
 #line 34

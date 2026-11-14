@@ -1,0 +1,126 @@
+// Date: 2026-11-14T07:42:18.5777012+02:00
+#line 33
+//=============================================================
+#pragma shady: macro_begin BODY
+//=============================================================
+// begin import SHD_Utility.fsh.__shady_macro_HEADER
+#line 36
+precision highp float;
+// end import SHD_Utility.fsh.__shady_macro_HEADER
+#line 37
+//=============================================================
+// 
+#region UNIFORMS ETC.
+
+
+// The uniforms.
+uniform sampler2D FSH_Lhs_Sampler;
+#define FSH_Rhs_Sampler gm_BaseTexture
+
+uniform vec4 FSH_Dst_Meta;
+uniform vec4 FSH_Lhs_Meta;
+uniform vec4 FSH_Rhs_Meta;
+
+// Imports.
+// begin import SHD_Utility_Get.fsh.__shady_export
+#line 51
+#region IMPORTS.
+// begin import SHD_Utility_Permute.fsh.__shady_export
+#line 51
+#region IMPORTS.
+// begin import SHD_Utility_IDiv.fsh.__shady_export
+#line 51
+float IDiv(float lhs, float rhs)
+#line 51
+{
+#line 51
+  return floor((lhs + 0.5) / rhs);
+#line 51
+}
+// end import SHD_Utility_IDiv.fsh.__shady_export
+#line 51
+#endregion
+#line 51
+vec2 Permute(vec4 meta, float idx)
+#line 51
+{
+#line 51
+  vec2 pos;
+#line 51
+  pos.y = IDiv(idx, meta.z);
+#line 51
+  pos.x = idx - pos.y * meta.z;
+#line 51
+  return pos;
+#line 51
+}
+#line 51
+float Permute(vec4 meta, vec2 pos)
+#line 51
+{
+#line 51
+  return (pos.x + pos.y * meta.z);
+#line 51
+}
+// end import SHD_Utility_Permute.fsh.__shady_export
+#line 51
+#endregion
+#line 51
+float Get(sampler2D tex, vec4 meta, vec2 position)
+#line 51
+{
+#line 51
+  return texture2D(tex, (position + 0.5) * meta.xy)[0];
+#line 51
+}
+#line 51
+float Get(sampler2D tex, vec4 meta, float idx)
+#line 51
+{
+#line 51
+  return Get(tex, meta, Permute(meta, idx));
+#line 51
+}
+// end import SHD_Utility_Get.fsh.__shady_export
+#line 52
+
+
+// OPERATION - DEFINE FUNCTION WHERE INLINED.
+float Operation(float lhs, float rhs);
+
+
+#endregion
+// 
+//=============================================================
+// 
+#region MAIN FUNCTION.
+
+
+void main()
+{
+  vec2 dstPosition = floor(gl_FragCoord.xy);
+  float dstIndex = Permute(FSH_Dst_Meta, dstPosition);
+  
+  float lhsSample = Get(
+    FSH_Lhs_Sampler, 
+    FSH_Lhs_Meta, 
+    dstIndex
+  );
+  
+  float rhsSample = Get(
+    FSH_Rhs_Sampler, 
+    FSH_Rhs_Meta, 
+    dstIndex
+  );
+  
+  float result = Operation(lhsSample, rhsSample);
+  
+  gl_FragData[0] = vec4(result);
+}
+
+
+#endregion
+// 
+//=============================================================
+#pragma shady: macro_end
+//=============================================================

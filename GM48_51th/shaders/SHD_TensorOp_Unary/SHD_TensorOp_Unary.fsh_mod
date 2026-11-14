@@ -24,6 +24,9 @@ uniform vec4 FSH_Src_Meta;
 // begin import SHD_Utility_Permute.fsh.__shady_export
 #line 47
 #region IMPORTS.
+// begin import SHD_Utility_IModDiv.fsh.__shady_export
+#line 47
+#region IMPORTS.
 // begin import SHD_Utility_IDiv.fsh.__shady_export
 #line 47
 float IDiv(float lhs, float rhs)
@@ -37,17 +40,28 @@ float IDiv(float lhs, float rhs)
 #line 47
 #endregion
 #line 47
+vec2 IModDiv(float lhs, float rhs)
+#line 47
+{
+#line 47
+  vec2 result;
+#line 47
+  result.y = IDiv(lhs, rhs);
+#line 47
+  result.x = lhs - result.y * rhs;
+#line 47
+  return result;
+#line 47
+}
+// end import SHD_Utility_IModDiv.fsh.__shady_export
+#line 47
+#endregion
+#line 47
 vec2 Permute(vec4 meta, float idx)
 #line 47
 {
 #line 47
-  vec2 pos;
-#line 47
-  pos.y = IDiv(idx, meta.z);
-#line 47
-  pos.x = idx - pos.y * meta.z;
-#line 47
-  return pos;
+  return IModDiv(idx, meta.z);
 #line 47
 }
 #line 47

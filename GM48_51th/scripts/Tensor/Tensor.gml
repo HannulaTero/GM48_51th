@@ -8,14 +8,14 @@
 * @param {Array<Real>}  _shape
 * @param {Bool}         _hasGrad
 */ 
-function Tensor(_shape, _hasGrad=false) constructor 
+function Tensor(_shape=undefined, _hasGrad=false) constructor 
 {
   //=============================================================
   // 
   #region STATIC METHODS.
   
   
-  // General methdos.
+  // General methods.
   static BufferPull = __Tensor__BufferPull;
   static BufferPush = __Tensor__BufferPush;
   static Exists     = __Tensor__Exists;
@@ -24,7 +24,13 @@ function Tensor(_shape, _hasGrad=false) constructor
   static GetTexture = __Tensor__GetTexture;
   static MatchShape = __Tensor__MatchShape;
   static MatchSize  = __Tensor__MatchSize;
+  static Reshape    = __Tensor__Reshape;
   static Verify     = __Tensor__Verify;
+  
+  // Operations : General
+  static Permute    = __Tensor__OpPermute;
+  static MatMul     = __Tensor__OpMatMul;
+  static TensorMul  = __Tensor__OpTensorMul;
   
   // Operations : Scalar.
   static OpSetOne     = __Tensor__OpSetOne;
@@ -94,21 +100,16 @@ function Tensor(_shape, _hasGrad=false) constructor
   #region DECLARE VARIABLES.
   
   // The dimensions of tensor.
-  self.shape = variable_clone(_shape);
-  
-  // Whether tensor should have gradient or not.
-  self.hasGrad = _hasGrad;
+  self.shape = [ ];
   
   // The gradients of the tensor.
-  self.grad = (self.hasGrad)
-    ? new Tensor(_shape, false)
-    : undefined;
+  self.grad = undefined;
   
   // The amount of dimensions.
-  self.rank = array_length(self.shape);
+  self.rank = 0;
   
   // How much have to jump to get next dimension.
-  self.stride = array_create(self.rank);
+  self.stride = [ ];
   
   // The amount of elements in tensor.
   self.itemCount = 1;
@@ -137,33 +138,18 @@ function Tensor(_shape, _hasGrad=false) constructor
   // 
   //=============================================================
   // 
-  #region DEFINE VARIABLES.
+  #region APPLY THE ARGUMENTS.
   
   
-  // Calculate the tensor related meta-data.
-  for(var i = 0; i < self.rank; i++)
+  if (_shape != undefined)
   {
-    self.stride[i] = self.itemCount;
-    self.itemCount *= self.shape[i];
+    self.Reshape(_shape);
   }
   
-  // Calculate surface layout.
-  self.surfaceLayout[0] = ceil(sqrt(self.itemCount));
-  self.surfaceLayout[1] = ceil(self.itemCount / self.surfaceLayout[0]);
-  
-  // Pre-calculate texel sizes.
-  self.surfaceTexels[0] = (1.0 / self.surfaceLayout[0]);
-  self.surfaceTexels[1] = (1.0 / self.surfaceLayout[1]);
-  
-  // Update surface capacity.
-  self.surfaceCapacity = self.surfaceLayout[0] * self.surfaceLayout[1];
-  
-  // Fill the surface meta-data.
-  self.surfaceMeta[0] = self.surfaceTexels[0];
-  self.surfaceMeta[1] = self.surfaceTexels[1];
-  self.surfaceMeta[2] = self.surfaceLayout[0];
-  self.surfaceMeta[3] = self.itemCount;
-  
+  if (_hasGrad == true)
+  {
+    self.grad = new Tensor(_shape);
+  }
   
   
   #endregion 

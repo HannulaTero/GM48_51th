@@ -5,7 +5,7 @@
 #region IMPORTS.
 
 
-#pragma shady: import(SHD_Utility_IDiv)
+#pragma shady: import(SHD_Utility_IModDiv)
 
 
 #endregion
@@ -15,10 +15,7 @@
 
 vec2 Permute(vec4 meta, float idx)
 {
-  vec2 pos;
-  pos.y = IDiv(idx, meta.z);
-  pos.x = idx - pos.y * meta.z;
-  return pos;
+  return IModDiv(idx, meta.z);
 }
 
 float Permute(vec4 meta, vec2 pos)
