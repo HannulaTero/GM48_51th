@@ -1,0 +1,33 @@
+// Date: 2026-11-14T07:08:28.9105251+02:00
+#line 33
+//=============================================================
+// begin import SHD_Utility.fsh.__shady_macro_HEADER
+#line 34
+precision highp float;
+// end import SHD_Utility.fsh.__shady_macro_HEADER
+#line 35
+//=============================================================
+// 
+#region UNIFORMS ETC.
+
+
+// The uniforms.
+uniform float FSH_Value;
+
+
+#endregion
+// 
+//=============================================================
+// 
+#region MAIN FUNCTION.
+
+
+void main()
+{
+  gl_FragData[0] = vec4(FSH_Value);
+}
+
+
+#endregion
+// 
+//=============================================================

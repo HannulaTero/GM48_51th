@@ -1,0 +1,109 @@
+// Date: 2026-11-14T07:07:35.4347929+02:00
+#line 33
+//=============================================================
+// 
+#region UNIFORMS ETC.
+
+
+// begin import SHD_Utility.fsh.__shady_macro_HEADER
+#line 38
+precision highp float;
+// end import SHD_Utility.fsh.__shady_macro_HEADER
+#line 39
+
+
+// The uniforms.
+uniform vec2 FSH_Offset;
+uniform vec4 FSH_PRNG_Meta;
+uniform vec2 FSH_Range;
+
+// Imports.
+// begin import SHD_Utility_Get.fsh.__shady_export
+#line 47
+#region IMPORTS.
+// begin import SHD_Utility_Permute.fsh.__shady_export
+#line 47
+#region IMPORTS.
+// begin import SHD_Utility_IDiv.fsh.__shady_export
+#line 47
+float IDiv(float lhs, float rhs)
+#line 47
+{
+#line 47
+  return floor((lhs + 0.5) / rhs);
+#line 47
+}
+// end import SHD_Utility_IDiv.fsh.__shady_export
+#line 47
+#endregion
+#line 47
+vec2 Permute(vec4 meta, float idx)
+#line 47
+{
+#line 47
+  vec2 pos;
+#line 47
+  pos.y = IDiv(idx, meta.z);
+#line 47
+  pos.x = idx - pos.y * meta.z;
+#line 47
+  return pos;
+#line 47
+}
+#line 47
+float Permute(vec4 meta, vec2 pos)
+#line 47
+{
+#line 47
+  return (pos.x + pos.y * meta.z);
+#line 47
+}
+// end import SHD_Utility_Permute.fsh.__shady_export
+#line 47
+#endregion
+#line 47
+float Get(sampler2D tex, vec4 meta, vec2 position)
+#line 47
+{
+#line 47
+  return texture2D(tex, (position + 0.5) * meta.xy)[0];
+#line 47
+}
+#line 47
+float Get(sampler2D tex, vec4 meta, float idx)
+#line 47
+{
+#line 47
+  return Get(tex, meta, Permute(meta, idx));
+#line 47
+}
+// end import SHD_Utility_Get.fsh.__shady_export
+#line 48
+
+
+#endregion
+// 
+//=============================================================
+// 
+#region MAIN FUNCTION.
+
+
+void main()
+{
+  vec2 position = floor(gl_FragCoord.xy);
+  
+  float sample = Get(
+    gm_BaseTexture, 
+    FSH_PRNG_Meta, 
+    FSH_Offset + position
+  );
+  
+  float rerange = mix(FSH_Range[0], FSH_Range[1], sample);
+  
+  gl_FragData[0] = vec4(rerange);
+}
+
+
+#endregion
+// 
+//=============================================================

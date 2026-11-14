@@ -1,0 +1,108 @@
+// Date: 2026-11-14T07:34:42.7622403+02:00
+#line 33
+//=============================================================
+// begin import SHD_Utility.fsh.__shady_macro_HEADER
+#line 34
+precision highp float;
+// end import SHD_Utility.fsh.__shady_macro_HEADER
+#line 35
+//=============================================================
+// 
+#region UNIFORMS ETC.
+
+
+// The uniforms.
+uniform vec4 FSH_Dst_Meta;
+uniform vec4 FSH_Src_Meta;
+
+// Imports.
+// begin import SHD_Utility_Get.fsh.__shady_export
+#line 45
+#region IMPORTS.
+// begin import SHD_Utility_Permute.fsh.__shady_export
+#line 45
+#region IMPORTS.
+// begin import SHD_Utility_IDiv.fsh.__shady_export
+#line 45
+float IDiv(float lhs, float rhs)
+#line 45
+{
+#line 45
+  return floor((lhs + 0.5) / rhs);
+#line 45
+}
+// end import SHD_Utility_IDiv.fsh.__shady_export
+#line 45
+#endregion
+#line 45
+vec2 Permute(vec4 meta, float idx)
+#line 45
+{
+#line 45
+  vec2 pos;
+#line 45
+  pos.y = IDiv(idx, meta.z);
+#line 45
+  pos.x = idx - pos.y * meta.z;
+#line 45
+  return pos;
+#line 45
+}
+#line 45
+float Permute(vec4 meta, vec2 pos)
+#line 45
+{
+#line 45
+  return (pos.x + pos.y * meta.z);
+#line 45
+}
+// end import SHD_Utility_Permute.fsh.__shady_export
+#line 45
+#endregion
+#line 45
+float Get(sampler2D tex, vec4 meta, vec2 position)
+#line 45
+{
+#line 45
+  return texture2D(tex, (position + 0.5) * meta.xy)[0];
+#line 45
+}
+#line 45
+float Get(sampler2D tex, vec4 meta, float idx)
+#line 45
+{
+#line 45
+  return Get(tex, meta, Permute(meta, idx));
+#line 45
+}
+// end import SHD_Utility_Get.fsh.__shady_export
+#line 46
+
+
+#endregion
+// 
+//=============================================================
+// 
+#region MAIN FUNCTION.
+
+
+void main()
+{
+  vec2 dstPosition = floor(gl_FragCoord.xy);
+  float dstIndex = Permute(FSH_Dst_Meta, dstPosition);
+  
+  float sample = Get(
+    gm_BaseTexture, 
+    FSH_Src_Meta, 
+    dstIndex
+  );
+  
+  float result = -sample;
+  
+  gl_FragData[0] = vec4(result);
+}
+
+
+#endregion
+// 
+//=============================================================
