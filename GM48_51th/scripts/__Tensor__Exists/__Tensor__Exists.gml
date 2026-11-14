@@ -3,7 +3,7 @@
 /**
 * Returns whether the GPU data exists.
 * 
-* @context {Struct.Tensor}
+* @context Tensor
 * @returns {Bool}
 */ 
 function __Tensor__Exists()

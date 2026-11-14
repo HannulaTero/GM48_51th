@@ -3,7 +3,7 @@
 /**
 * Frees the GPU data.
 * 
-* @context {Struct.Tensor}
+* @context Tensor
 * @returns {Struct.Tensor}
 */ 
 function __Tensor__Free()

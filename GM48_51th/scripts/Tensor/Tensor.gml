@@ -15,12 +15,22 @@ function Tensor(_shape, _hasGrad=false) constructor
   #region STATIC METHODS.
   
   
+  // General methdos.
   static BufferPull = __Tensor__BufferPull;
   static BufferPush = __Tensor__BufferPush;
   static Exists     = __Tensor__Exists;
   static Free       = __Tensor__Free;
   static GetSurface = __Tensor__GetSurface;
   static Verify     = __Tensor__Verify;
+  
+  // Operations : Scalar.
+  static OpSetOne     = __Tensor__OpSetOne;
+  static OpSetScalar  = __Tensor__OpSetScalar;
+  static OpSetZero    = __Tensor__OpSetZero;
+  
+  // Operations : Unary.
+  
+  // Operations : Binary.
   
   
   #endregion

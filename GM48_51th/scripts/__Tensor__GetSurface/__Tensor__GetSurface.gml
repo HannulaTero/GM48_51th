@@ -3,7 +3,7 @@
 /**
 * Returns the GPU data.
 * 
-* @context {Struct.Tensor}
+* @context Tensor
 * @returns {Id.Surface}
 */ 
 function __Tensor__GetSurface()

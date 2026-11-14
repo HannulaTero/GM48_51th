@@ -3,7 +3,7 @@
 /**
 * Verifies that GPU data exists, recreates it if necessary.
 * 
-* @context {Struct.Tensor}
+* @context Tensor
 * @returns {Struct.Tensor}
 */ 
 function __Tensor__Verify()

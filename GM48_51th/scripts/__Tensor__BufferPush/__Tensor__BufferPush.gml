@@ -3,7 +3,7 @@
 /**
 * Pushes data to buffer from the tensor.
 * 
-* @context {Struct.Tensor}
+* @context Tensor
 * @param {Id.Buffer} _buffer
 * @returns {Struct.Tensor}
 */ 
