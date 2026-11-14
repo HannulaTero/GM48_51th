@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"GameInitialize_Cold",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"GameInitialize_Cold",
+  "parent":{
+    "name":"Initialize",
+    "path":"folders/Initialize.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
