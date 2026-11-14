@@ -1,4 +1,4 @@
-// Date: 2026-11-14T17:21:05.0904761+02:00
+// Date: 2026-11-14T17:57:18.6231954+02:00
 #line 33
 //=============================================================
 // begin import SHD_TensorOp_Unary.fsh.__shady_macro_BODY
@@ -42,7 +42,7 @@ vec2 IModDiv(float lhs, float rhs)
 #line 34
   result.y = IDiv(lhs, rhs);
 #line 34
-  result.x = lhs - result.y * rhs;
+  result.x = lhs - result.y * rhs; // IMod
 #line 34
   return result;
 #line 34

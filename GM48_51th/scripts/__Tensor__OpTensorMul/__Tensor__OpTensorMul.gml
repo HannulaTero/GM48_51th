@@ -60,35 +60,35 @@ function __Tensor__OpTensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis)
   var _rhsDstAxis = [ ];
   for(var i = 0; i < _axisCount; i++)
   {
-    array_push(_lhsDstAxis[i], _lhsAxis[i]);
-    array_push(_rhsDstAxis[i], _rhsAxis[i]);
+    array_push(_lhsDstAxis, _lhsAxis[i]);
+    array_push(_rhsDstAxis, _rhsAxis[i]);
   }
   
   for(var i = 0; i < self.rank; i++)
   {
     if (array_get_index(_lhsAxis, i) < 0)
     {
-      array_push(_lhsDstAxis[i], i);
+      array_push(_lhsDstAxis, i);
     }
     if (array_get_index(_rhsAxis, i) < 0)
     {
-      array_push(_rhsDstAxis[i], i);
+      array_push(_rhsDstAxis, i);
     }
   }
   
   
   // Permute the inputs.
-  var _srcAxis = array_create_ext(_axisCount, function(_index)
+  var _srcAxis = array_create_ext(self.rank, function(_index)
   {
     return _index;
   });
   
-  lhsTemp.Permute(_lhs, _srcAxis, _lhsDstAxis);
-  rhsTemp.Permute(_rhs, _srcAxis, _rhsDstAxis);
+  lhsTemp.OpPermute(_lhs, _srcAxis, _lhsDstAxis);
+  rhsTemp.OpPermute(_rhs, _srcAxis, _rhsDstAxis);
   
   
   // Apply the matrix multiplication.
-  self.OpMatMul(lhsTemp, rhsTemp);
+  self.OpMatMul(lhsTemp, rhsTemp, _reduceCount);
 }
 
 

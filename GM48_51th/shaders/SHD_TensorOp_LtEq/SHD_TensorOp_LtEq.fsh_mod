@@ -11,7 +11,7 @@ precision highp float;
 #line 34
 uniform sampler2D FSH_Lhs_Sampler;
 #line 34
-#define FSH_Rhs_Sampler gm_BaseTexture
+uniform sampler2D FSH_Rhs_Sampler;
 #line 34
 uniform vec4 FSH_Dst_Meta;
 #line 34
@@ -48,7 +48,7 @@ vec2 IModDiv(float lhs, float rhs)
 #line 34
   result.y = IDiv(lhs, rhs);
 #line 34
-  result.x = lhs - result.y * rhs;
+  result.x = lhs - result.y * rhs; // IMod
 #line 34
   return result;
 #line 34

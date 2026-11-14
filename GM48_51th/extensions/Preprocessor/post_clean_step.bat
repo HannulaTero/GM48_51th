@@ -1,0 +1,1 @@
+"%~dp0\Preprocessor" --path "%~dp0..\.." --clean

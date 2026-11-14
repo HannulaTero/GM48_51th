@@ -16,6 +16,8 @@ function Tensor(_shape=undefined, _hasGrad=false) constructor
   
   
   // General methods.
+  static ArrayPull  = __Tensor__ArrayPull;
+  static ArrayPush  = __Tensor__ArrayPush;
   static BufferPull = __Tensor__BufferPull;
   static BufferPush = __Tensor__BufferPush;
   static Exists     = __Tensor__Exists;
@@ -28,9 +30,9 @@ function Tensor(_shape=undefined, _hasGrad=false) constructor
   static Verify     = __Tensor__Verify;
   
   // Operations : General
-  static Permute    = __Tensor__OpPermute;
-  static MatMul     = __Tensor__OpMatMul;
-  static TensorMul  = __Tensor__OpTensorMul;
+  static OpPermute    = __Tensor__OpPermute;
+  static OpMatMul     = __Tensor__OpMatMul;
+  static OpTensorMul  = __Tensor__OpTensorMul;
   
   // Operations : Scalar.
   static OpSetOne     = __Tensor__OpSetOne;

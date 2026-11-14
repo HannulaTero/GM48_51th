@@ -17,6 +17,6 @@ vec2 IModDiv(float lhs, float rhs)
 {
   vec2 result;
   result.y = IDiv(lhs, rhs);
-  result.x = lhs - result.y * rhs;
+  result.x = lhs - result.y * rhs; // IMod
   return result;
 }

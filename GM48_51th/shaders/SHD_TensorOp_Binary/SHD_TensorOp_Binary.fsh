@@ -9,7 +9,7 @@
 
 // The uniforms.
 uniform sampler2D FSH_Lhs_Sampler;
-#define FSH_Rhs_Sampler gm_BaseTexture
+uniform sampler2D FSH_Rhs_Sampler;
 
 uniform vec4 FSH_Dst_Meta;
 uniform vec4 FSH_Lhs_Meta;

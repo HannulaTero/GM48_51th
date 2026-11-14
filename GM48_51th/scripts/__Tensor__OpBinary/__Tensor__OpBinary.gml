@@ -20,11 +20,12 @@ function __Tensor__OpBinary(_lhs, _rhs, _shader)
   GPU_SetState();
   GPU_SetShader(_shader);
   GPU_SetUniform_Sample("FSH_Lhs_Sampler", _lhs);
+  GPU_SetUniform_Sample("FSH_Rhs_Sampler", _rhs);
   GPU_SetUniform_FloatN("FSH_Dst_Meta", self.surfaceMeta);
   GPU_SetUniform_FloatN("FSH_Lhs_Meta", _lhs.surfaceMeta);
   GPU_SetUniform_FloatN("FSH_Rhs_Meta", _rhs.surfaceMeta);
   GPU_SetTarget(self);
-  GPU_Dispatch_Full(_rhs);
+  GPU_Dispatch_Full();
   GPU_EndTarget();
   GPU_EndShader();
   GPU_EndState();

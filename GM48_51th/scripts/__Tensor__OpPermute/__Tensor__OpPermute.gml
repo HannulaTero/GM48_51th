@@ -73,10 +73,10 @@ function __Tensor__OpPermute(_src, _srcAxis, _dstAxis)
   GPU_SetState();
   GPU_SetShader(SHD_TensorOp_Permute);
   GPU_SetUniform_Sample("FSH_Params_Sampler", params);
-  GPU_SetUniform_FloatN("FSH_Params_Meta",    params.meta);
-  GPU_SetUniform_FloatN("FSH_Dst_Meta",       self.meta);
-  GPU_SetUniform_FloatN("FSH_Src_Meta",       _src.meta);
-  GPU_SetUniform_FloatN("FSH_Dst_Rank",       self.rank);
+  GPU_SetUniform_FloatN("FSH_Params_Meta",    params.surfaceMeta);
+  GPU_SetUniform_FloatN("FSH_Dst_Meta",       self.surfaceMeta);
+  GPU_SetUniform_FloatN("FSH_Src_Meta",       _src.surfaceMeta);
+  GPU_SetUniform_Float1("FSH_Dst_Rank",       self.rank);
   GPU_SetTarget(self);
   GPU_Dispatch_Full(_src);
   GPU_EndTarget();

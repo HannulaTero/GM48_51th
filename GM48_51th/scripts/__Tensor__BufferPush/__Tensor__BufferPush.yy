@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"__Tensor__BufferPush",
   "parent":{
-    "name":"Tensor",
-    "path":"folders/Neural Network/Tensor.yy",
+    "name":"Buffer",
+    "path":"folders/Neural Network/Tensor/Buffer.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

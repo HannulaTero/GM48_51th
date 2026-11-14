@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"SCR_Preprocessor",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"SCR_Preprocessor",
+  "parent":{
+    "name":"GM48_51th_Preprocessor",
+    "path":"GM48_51th_Preprocessor.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

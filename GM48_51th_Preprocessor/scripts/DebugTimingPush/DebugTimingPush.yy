@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"DebugTimingPush",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"DebugTimingPush",
+  "parent":{
+    "name":"Debugging",
+    "path":"folders/Debugging.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

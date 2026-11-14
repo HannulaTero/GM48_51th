@@ -9,7 +9,7 @@
 
 // The uniforms.
 uniform sampler2D FSH_Lhs_Sampler;
-#define FSH_Rhs_Sampler gm_BaseTexture
+uniform sampler2D FSH_Rhs_Sampler;
 
 uniform vec4 FSH_Dst_Meta;
 uniform vec4 FSH_Lhs_Meta;
@@ -35,6 +35,7 @@ void main()
   vec2 dstPosition = floor(gl_FragCoord.xy);
   float dstIndex = Permute(FSH_Dst_Meta, dstPosition);
   vec2 indexes = IModDiv(dstIndex, FSH_IndexDivisor);
+  indexes *= FSH_ReduceCount;
   
   
   // Permute the index with tensor strides.

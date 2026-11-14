@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"DebugTimingPop",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"DebugTimingPop",
+  "parent":{
+    "name":"Debugging",
+    "path":"folders/Debugging.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

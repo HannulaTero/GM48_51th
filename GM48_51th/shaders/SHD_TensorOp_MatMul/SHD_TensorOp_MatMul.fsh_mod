@@ -1,4 +1,4 @@
-// Date: 2026-11-14T17:52:56.3916561+02:00
+// Date: 2026-11-14T21:29:15.7446666+02:00
 #line 33
 //=============================================================
 #pragma shady: macro_begin BODY
@@ -15,7 +15,7 @@ precision highp float;
 
 // The uniforms.
 uniform sampler2D FSH_Lhs_Sampler;
-#define FSH_Rhs_Sampler gm_BaseTexture
+uniform sampler2D FSH_Rhs_Sampler;
 
 uniform vec4 FSH_Dst_Meta;
 uniform vec4 FSH_Lhs_Meta;
@@ -48,7 +48,7 @@ vec2 IModDiv(float lhs, float rhs)
 #line 53
   result.y = IDiv(lhs, rhs);
 #line 53
-  result.x = lhs - result.y * rhs;
+  result.x = lhs - result.y * rhs; // IMod
 #line 53
   return result;
 #line 53
@@ -114,6 +114,7 @@ void main()
   vec2 dstPosition = floor(gl_FragCoord.xy);
   float dstIndex = Permute(FSH_Dst_Meta, dstPosition);
   vec2 indexes = IModDiv(dstIndex, FSH_IndexDivisor);
+  indexes *= FSH_ReduceCount;
   
   
   // Permute the index with tensor strides.

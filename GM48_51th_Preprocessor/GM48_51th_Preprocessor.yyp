@@ -1,0 +1,52 @@
+{
+  "$GMProject":"v1",
+  "%Name":"GM48_51th_Preprocessor",
+  "AudioGroups":[
+    {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+  ],
+  "configs":{
+    "children":[],
+    "name":"Default",
+  },
+  "defaultScriptType":1,
+  "Folders":[
+    {"$GMFolder":"","%Name":"File Handling","folderPath":"folders/File Handling.yy","name":"File Handling","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Debugging","folderPath":"folders/Debugging.yy","name":"Debugging","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Operation Clean","folderPath":"folders/Operation Clean.yy","name":"Operation Clean","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Operation Post","folderPath":"folders/Operation Post.yy","name":"Operation Post","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Operation Pre","folderPath":"folders/Operation Pre.yy","name":"Operation Pre","resourceType":"GMFolder","resourceVersion":"2.0",},
+  ],
+  "ForcedPrefabProjectReferences":[],
+  "IncludedFiles":[],
+  "isEcma":false,
+  "LibraryEmitters":[],
+  "MetaData":{
+    "IDEVersion":"2026.0.0.16",
+  },
+  "name":"GM48_51th_Preprocessor",
+  "resources":[
+    {"id":{"name":"OBJ_Preprocessor_Clean","path":"objects/OBJ_Preprocessor_Clean/OBJ_Preprocessor_Clean.yy",},},
+    {"id":{"name":"OBJ_Preprocessor_Post","path":"objects/OBJ_Preprocessor_Post/OBJ_Preprocessor_Post.yy",},},
+    {"id":{"name":"OBJ_Preprocessor_Pre_HandleCaches","path":"objects/OBJ_Preprocessor_Pre_HandleCaches/OBJ_Preprocessor_Pre_HandleCaches.yy",},},
+    {"id":{"name":"OBJ_Preprocessor_Pre_LoadShaderFiles","path":"objects/OBJ_Preprocessor_Pre_LoadShaderFiles/OBJ_Preprocessor_Pre_LoadShaderFiles.yy",},},
+    {"id":{"name":"OBJ_Preprocessor","path":"objects/OBJ_Preprocessor/OBJ_Preprocessor.yy",},},
+    {"id":{"name":"OBJ_TESTING","path":"objects/OBJ_TESTING/OBJ_TESTING.yy",},},
+    {"id":{"name":"RM_Preprocessor","path":"rooms/RM_Preprocessor/RM_Preprocessor.yy",},},
+    {"id":{"name":"CrawlFoldersAndFiles","path":"scripts/CrawlFoldersAndFiles/CrawlFoldersAndFiles.yy",},},
+    {"id":{"name":"DebugTimingPop","path":"scripts/DebugTimingPop/DebugTimingPop.yy",},},
+    {"id":{"name":"DebugTimingPush","path":"scripts/DebugTimingPush/DebugTimingPush.yy",},},
+    {"id":{"name":"File","path":"scripts/File/File.yy",},},
+    {"id":{"name":"FindFiletypes","path":"scripts/FindFiletypes/FindFiletypes.yy",},},
+    {"id":{"name":"Folder","path":"scripts/Folder/Folder.yy",},},
+    {"id":{"name":"SCR_Preprocessor","path":"scripts/SCR_Preprocessor/SCR_Preprocessor.yy",},},
+  ],
+  "resourceType":"GMProject",
+  "resourceVersion":"2.0",
+  "RoomOrderNodes":[
+    {"roomId":{"name":"RM_Preprocessor","path":"rooms/RM_Preprocessor/RM_Preprocessor.yy",},},
+  ],
+  "templateType":"game",
+  "TextureGroups":[
+    {"$GMTextureGroup":"","%Name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"Default","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+  ],
+}

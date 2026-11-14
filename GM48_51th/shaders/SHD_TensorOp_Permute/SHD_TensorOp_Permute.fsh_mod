@@ -1,4 +1,4 @@
-// Date: 2026-11-14T17:55:18.0775448+02:00
+// Date: 2026-11-14T17:57:18.6221953+02:00
 #line 33
 //=============================================================
 #pragma shady: macro_begin BODY
@@ -48,7 +48,7 @@ vec2 IModDiv(float lhs, float rhs)
 #line 53
   result.y = IDiv(lhs, rhs);
 #line 53
-  result.x = lhs - result.y * rhs;
+  result.x = lhs - result.y * rhs; // IMod
 #line 53
   return result;
 #line 53
