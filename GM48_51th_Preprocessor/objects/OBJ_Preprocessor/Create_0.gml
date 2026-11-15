@@ -2,7 +2,6 @@
 
 
 DebugTimingPush();
-window_set_position(0, 0);
 show_debug_message($"\n\n");
 show_debug_message(string_repeat("=", 32));
 show_debug_message($"\n\n\n");

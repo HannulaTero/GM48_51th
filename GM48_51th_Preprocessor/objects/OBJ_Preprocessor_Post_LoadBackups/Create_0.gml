@@ -10,11 +10,11 @@ DebugTimingPush();
 
 self.pendingRequests = ds_map_create();
 
-array_foreach(BACKUPS, function(_file, _index)
+array_foreach(BACKUPS, function(_backup, _index)
 {
-  _file.buffer = buffer_create(1, buffer_grow, 1);
-  _file.request = buffer_load_async(
-    _file.buffer, _file.path, 0, -1
+  _backup.buffer = buffer_create(1, buffer_grow, 1);
+  _backup.request = buffer_load_async(
+    _backup.buffer, _backup.path, 0, -1
   );
-  self.pendingRequests[? _file.request] = _file;
+  self.pendingRequests[? _backup.request] = _backup;
 });
