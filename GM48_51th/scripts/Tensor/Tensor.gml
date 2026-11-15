@@ -36,11 +36,12 @@ function Tensor(_shape=undefined, _hasGrad=true) constructor
   static Backward       = NO_OP;
   
   // Operations : General
-  static OpBinary     = __Tensor__OpBinary;
-  static OpPermute    = __Tensor__OpPermute;
-  static OpMatMul     = __Tensor__OpMatMul;
-  static OpTensorMul  = __Tensor__OpTensorMul;
-  static OpUnary      = __Tensor__OpUnary;
+  static OpBinary         = __Tensor__OpBinary;
+  static OpPermute        = __Tensor__OpPermute;
+  static OpPermuteMatrix  = __Tensor__OpPermuteMatrix;
+  static OpMatMul         = __Tensor__OpMatMul;
+  static OpTensorMul      = __Tensor__OpTensorMul;
+  static OpUnary          = __Tensor__OpUnary;
   
   // Operations : Scalar.
   static OpScalar         = __Tensor__OpScalar;

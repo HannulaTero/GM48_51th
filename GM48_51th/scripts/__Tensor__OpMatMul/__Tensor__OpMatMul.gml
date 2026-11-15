@@ -6,6 +6,8 @@
 * -> shapes : lhs[MN] x rhs[MO] => out[NO]
 * -> This allows assuming that each can be iterated by offsetting by 1.
 * 
+* Doesn't care whether the tensor has actually higher dimensions.
+* 
 * @param {Struct.Tensor}  _lhs          Left operand.
 * @param {Struct.Tensor}  _rhs          Right operand.
 * @param {Real}           _reduceCount  
