@@ -22,6 +22,7 @@ if (keyboard_check_pressed(vk_space) == true)
   self.lhs.ArrayPull(_lhsArray);
   self.rhs.ArrayPull(_rhsArray);
   self.dst.Forward();
+  show_debug_message(self.dst.ArrayPush());
   
   self.dst.grad.OpScalarSetOne();
   self.dst.Backward();
