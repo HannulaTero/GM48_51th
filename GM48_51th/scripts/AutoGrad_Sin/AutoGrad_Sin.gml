@@ -16,7 +16,7 @@ function AutoGrad_Sin(_src) : AutoGrad_Unary(_src) constructor
   static Forward = function()
   {
     self.ForwardInputs();
-    self.output.OpSin(self.input[0]);
+    self.OpSin(self.input[0]);
   };
   
   

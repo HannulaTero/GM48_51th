@@ -16,7 +16,7 @@ function AutoGrad_Sigmoid(_src) : AutoGrad_Unary(_src) constructor
   static Forward = function()
   {
     self.ForwardInputs();
-    self.output.OpSigmoid(self.input[0]);
+    self.OpSigmoid(self.input[0]);
   };
   
   

@@ -17,7 +17,7 @@ function AutoGrad_Mean(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
   static Forward = function()
   {
     self.ForwardInputs();
-    self.output.OpMean(self.input[0], self.input[1]);
+    self.OpMean(self.input[0], self.input[1]);
   };
   
   

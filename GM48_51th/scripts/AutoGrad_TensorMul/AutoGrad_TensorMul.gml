@@ -9,7 +9,7 @@
 * @param {Array<Real>}    _lhsAxis
 * @param {Array<Real>}    _rhsAxis
 */ 
-function AutoGrad_TensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis) : AutoGrad_Binary(_lhs, _rhs) constructor
+function AutoGrad_TensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis) : Tensor() constructor
 {
   //===========================================================
   // 
@@ -19,7 +19,7 @@ function AutoGrad_TensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis) : AutoGrad_Binary(_l
   static Forward = function()
   {
     self.ForwardInputs();
-    self.output.OpTensorMul(
+    self.OpTensorMul(
       self.input[0], 
       self.input[1], 
       self.axis[0], 
@@ -116,6 +116,42 @@ function AutoGrad_TensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis) : AutoGrad_Binary(_l
   #region APPLY THE ARGUMENTS.
   
   
+  // Set the input tensors.
+  self.input[0] = _lhs;
+  self.input[1] = _rhs;
+  
+  
+  // Reshape the output tensor.
+  {
+    var _shape = [ ];
+    
+    for(var i = 0; i < _lhs.rank; i++)
+    {
+      if (array_get_index(_lhsAxis, i) <= 0)
+      {
+        array_push(_shape, _lhs.shape[i]);
+      }
+    }
+    
+    for(var i = 0; i < _rhs.rank; i++)
+    {
+      if (array_get_index(_rhsAxis, i) <= 0)
+      {
+        array_push(_shape, _rhs.shape[i]);
+      }
+    }
+    
+    self.Reshape(_shape);
+  }
+  
+  
+  // Reshape the gradient tensor.
+  if (self.grad != undefined)
+  {
+    self.grad.Reshape(self.shape);
+  }
+  
+  
   // 
   self.axis[0] = variable_clone(_lhsAxis);
   
@@ -149,7 +185,7 @@ function AutoGrad_TensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis) : AutoGrad_Binary(_l
     });
     
     var _start = array_length(self.dyAxis[0]);
-    var _count = self.output.rank;
+    var _count = self.rank;
     var _target = self.dxAxis[1];
     for(var i = _start; i < _count; i++)
     {

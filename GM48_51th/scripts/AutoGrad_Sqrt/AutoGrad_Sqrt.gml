@@ -16,7 +16,7 @@ function AutoGrad_Sqrt(_src) : AutoGrad_Unary(_src) constructor
   static Forward = function()
   {
     self.ForwardInputs();
-    self.output.OpSqrt(self.input[0]);
+    self.OpSqrt(self.input[0]);
   };
   
   
@@ -31,7 +31,7 @@ function AutoGrad_Sqrt(_src) : AutoGrad_Unary(_src) constructor
       Tensor_Workspace_Begin();
       var _tempA = Tensor_Workspace_Get(_src.itemCount);
       var _tempB = Tensor_Workspace_Get(_src.itemCount);
-      _tempA.OpScalarMul(self.output, 2.0);
+      _tempA.OpScalarMul(self, 2.0);
       _tempB.OpInv(_tempA);
       _src.grad.OpMul(_tempB, self.grad);
       Tensor_Workspace_End();

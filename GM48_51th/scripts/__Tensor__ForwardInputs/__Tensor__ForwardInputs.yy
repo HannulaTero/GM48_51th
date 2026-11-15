@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"AutoGrad",
+  "%Name":"__Tensor__ForwardInputs",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"AutoGrad",
+  "name":"__Tensor__ForwardInputs",
   "parent":{
     "name":"AutoGrad",
-    "path":"folders/Neural Network/AutoGrad.yy",
+    "path":"folders/Neural Network/Tensor/AutoGrad.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -16,7 +16,7 @@ function AutoGrad_Decr(_src) : AutoGrad_Unary(_src) constructor
   static Forward = function()
   {
     self.ForwardInputs();
-    self.output.OpDecr(self.input[0]);
+    self.OpDecr(self.input[0]);
   };
   
   

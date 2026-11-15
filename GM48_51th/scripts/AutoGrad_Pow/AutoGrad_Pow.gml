@@ -17,7 +17,7 @@ function AutoGrad_Pow(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
   static Forward = function()
   {
     self.ForwardInputs();
-    self.output.OpDiv(self.input[0], self.input[1]);
+    self.OpDiv(self.input[0], self.input[1]);
   };
   
   
@@ -49,7 +49,7 @@ function AutoGrad_Pow(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
       var _tempA = Tensor_Workspace_Get(_capacity);
       var _tempB = Tensor_Workspace_Get(_capacity);
       _tempA.OpLog(_lhs);
-      _tempB.OpMul(self.output, _tempA);
+      _tempB.OpMul(self, _tempA);
       _rhs.grad.OpMul(_tempB, self.grad);
       Tensor_Workspace_End();
       _rhs.Backward();

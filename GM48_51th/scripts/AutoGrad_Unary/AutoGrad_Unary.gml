@@ -6,7 +6,7 @@
 * 
 * @param {Struct.Tensor} _src
 */ 
-function AutoGrad_Unary(_src) : AutoGrad() constructor
+function AutoGrad_Unary(_src) : Tensor() constructor
 {
   //===========================================================
   // 
@@ -34,13 +34,13 @@ function AutoGrad_Unary(_src) : AutoGrad() constructor
   
   
   // Reshape the output tensor.
-  self.output.Reshape(_src.shape);
+  self.Reshape(_src.shape);
   
   
   // Reshape the gradient tensor.
   if (self.grad != undefined)
   {
-    self.grad.Reshape(_src.shape);
+    self.grad.Reshape(self.shape);
   }
   
   

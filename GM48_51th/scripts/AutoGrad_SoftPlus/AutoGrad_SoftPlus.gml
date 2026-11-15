@@ -16,7 +16,7 @@ function AutoGrad_SoftPlus(_src) : AutoGrad_Unary(_src) constructor
   static Forward = function()
   {
     self.ForwardInputs();
-    self.output.OpSoftPlus(self.input[0]);
+    self.OpSoftPlus(self.input[0]);
   };
   
   

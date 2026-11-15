@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"__Tensor__GetTexture",
   "parent":{
-    "name":"Tensor",
-    "path":"folders/Neural Network/Tensor.yy",
+    "name":"General",
+    "path":"folders/Neural Network/Tensor/General.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

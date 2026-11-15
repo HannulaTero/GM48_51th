@@ -16,7 +16,7 @@ function AutoGrad_Neg(_src) : AutoGrad_Unary(_src) constructor
   static Forward = function()
   {
     self.ForwardInputs();
-    self.output.OpNeg(self.input[0]);
+    self.OpNeg(self.input[0]);
   };
   
   

@@ -14,6 +14,6 @@ self.dst.Forward();
 self.dst.grad.OpScalarSetOne();
 self.dst.Backward();
 
-show_debug_message(self.dst.output.ArrayPush());
+show_debug_message(self.dst.ArrayPush());
 show_debug_message(self.lhs.grad.ArrayPush());
 show_debug_message(self.rhs.grad.ArrayPush());

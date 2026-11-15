@@ -17,7 +17,7 @@ function AutoGrad_Max(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
   static Forward = function()
   {
     self.ForwardInputs();
-    self.output.OpMax(self.input[0], self.input[1]);
+    self.OpMax(self.input[0], self.input[1]);
   };
   
   

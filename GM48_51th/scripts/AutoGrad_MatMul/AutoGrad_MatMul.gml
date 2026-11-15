@@ -12,7 +12,7 @@
 * @param {Struct.Tensor}  _rhs
 * @param {Real}           _reduceCount
 */ 
-function AutoGrad_MatMul(_lhs, _rhs, _reduceCount) : AutoGrad_Binary(_lhs, _rhs) constructor
+function AutoGrad_MatMul(_lhs, _rhs, _reduceCount) : Tensor() constructor
 {
   //===========================================================
   // 
@@ -22,7 +22,7 @@ function AutoGrad_MatMul(_lhs, _rhs, _reduceCount) : AutoGrad_Binary(_lhs, _rhs)
   static Forward = function()
   {
     self.ForwardInputs();
-    self.output.OpMatMul(self.input[0], self.input[1], self.reduceCount);
+    self.OpMatMul(self.input[0], self.input[1], self.reduceCount);
   };
   
   
@@ -91,6 +91,25 @@ function AutoGrad_MatMul(_lhs, _rhs, _reduceCount) : AutoGrad_Binary(_lhs, _rhs)
   // 
   #region APPLY THE ARGUMENTS.
   
+  
+  
+  // Set the input tensors.
+  self.input[0] = _lhs;
+  self.input[1] = _rhs;
+  
+  
+  // Reshape the output tensor.
+  {
+    
+    self.Reshape(_shape);
+  }
+  
+  
+  // Reshape the gradient tensor.
+  if (self.grad != undefined)
+  {
+    self.grad.Reshape(self.shape);
+  }
   
   
   

@@ -7,8 +7,9 @@
 * 
 * @param {Array<Real>}  _shape
 * @param {Bool}         _hasGrad
+* @param {Bool}         _learnable
 */ 
-function Tensor(_shape=undefined, _hasGrad=true) constructor 
+function Tensor(_shape=undefined, _hasGrad=true, _learnable=false) constructor 
 {
   //=============================================================
   // 
@@ -32,7 +33,7 @@ function Tensor(_shape=undefined, _hasGrad=true) constructor
   
   // Operations : AutoGrad
   static Forward        = NO_OP;
-  static ForwardInputs  = NO_OP;
+  static ForwardInputs  = __Tensor__ForwardInputs;
   static Backward       = NO_OP;
   
   // Operations : General
@@ -168,6 +169,12 @@ function Tensor(_shape=undefined, _hasGrad=true) constructor
   // -> Stored in array, so it is easier to pass to shader.
   // [ texel.x, texel.y, surface.width, itemCount ]
   self.surfaceMeta = [ 1, 1, 1, 1 ];
+  
+  // If doing autograd, what are the input tensors.
+  self.input = [ ];
+  
+  // If doing autograd and optimizing, whether learnable.
+  self.learnable = false;
   
   
   #endregion
