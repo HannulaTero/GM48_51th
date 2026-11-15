@@ -1,4 +1,5 @@
 /// @desc 
+DebugTimingPush();
 
 ROOT = new Folder(
   undefined,

@@ -1,6 +1,7 @@
 /// @desc 
 
 
+DebugTimingPush();
 window_set_position(0, 0);
 show_debug_message($"\n\n");
 show_debug_message(string_repeat("=", 32));
@@ -79,8 +80,7 @@ DebugTimingPop("Searched specific file-types: {0} ms");
 
 // Start the operation.
 instance_create_depth(0, 0, 0, _operation);
-instance_destroy();
-exit;
+
 
 
 
