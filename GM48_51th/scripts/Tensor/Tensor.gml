@@ -48,7 +48,7 @@ function Tensor(_shape=undefined, _hasGrad=true) constructor
   static OpScalarSet      = __Tensor__OpScalarSet;
   static OpScalarSetOne   = __Tensor__OpScalarSetOne;
   static OpScalarSetZero  = __Tensor__OpScalarSetZero;
-  static OpScalarSub      = __Tensor__OpScalarSetSub;
+  static OpScalarSub      = __Tensor__OpScalarSub;
   
   // Operations : Inplace Scalar operations.
   static OpScalarInplaceAdd   = __Tensor__OpScalarInplaceAdd;
