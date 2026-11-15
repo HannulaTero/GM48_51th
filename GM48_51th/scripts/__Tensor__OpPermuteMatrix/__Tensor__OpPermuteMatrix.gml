@@ -28,8 +28,8 @@ function __Tensor__OpPermuteMatrix(_src, _width)
   GPU_SetUniform_Sample("FSH_Src_Sampler",  _src);
   GPU_SetUniform_FloatN("FSH_Src_Meta",     _src.surfaceMeta);
   GPU_SetUniform_FloatN("FSH_Dst_Meta",     self.surfaceMeta);
-  GPU_SetUniform_FloatN("FSH_Src_Width",    _width);
-  GPU_SetUniform_FloatN("FSH_Dst_Width",    (_src.itemCount div _width));
+  GPU_SetUniform_Float1("FSH_Src_Width",    _width);
+  GPU_SetUniform_Float1("FSH_Dst_Width",    (_src.itemCount div _width));
   GPU_SetTarget(self);
   GPU_Dispatch();
   GPU_EndTarget();

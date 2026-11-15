@@ -66,7 +66,7 @@ function AutoGrad_MatMul(_lhs, _rhs, _reduceCount) : Tensor() constructor
       Tensor_Workspace_Begin();
       var _tempA = Tensor_Workspace_Get(_lhs.shape);
       _tempA.OpPermuteMatrix(_lhs, _lhsWidth);
-      _rhs.grad.OpMatMul(_tempA, _tempB, _lhsHeight);
+      _rhs.grad.OpMatMul(_tempA, _grad, _lhsHeight);
       Tensor_Workspace_End();
       _rhs.Backward();
     }

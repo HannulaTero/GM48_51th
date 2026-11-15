@@ -26,19 +26,11 @@ if (keyboard_check_pressed(vk_space) == true)
   self.dst.grad.OpScalarSetOne();
   self.dst.Backward();
   
-  var _result = self.dst.ArrayPush();
+  show_debug_message(self.dst.grad.ArrayPush());
+  show_debug_message(self.lhs.grad.ArrayPush());
+  show_debug_message(self.rhs.grad.ArrayPush());
   
   
-  show_debug_message(_test);
-  show_debug_message(_result);
-  show_debug_message(array_equals(_test, _result));
-  
-  array_sort(_test, true);
-  array_sort(_result, true);
-  
-  show_debug_message(_test);
-  show_debug_message(_result);
-  show_debug_message(array_equals(_test, _result));
 }
 
 

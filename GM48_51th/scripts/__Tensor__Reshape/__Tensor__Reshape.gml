@@ -6,7 +6,7 @@
 * 
 * @context Tensor
 * @param {Array<Real>} _shape   Tensor shape (ND).
-* @param {Array<Real>} _layout  Surface layout (2D), how data is stored.
+* @param {Array<Real>} _layout  Surface layout (2D), how data is stored - Suggestion!
 * @returns {Struct.Tensor}
 */ 
 function __Tensor__Reshape(_shape, _layout=undefined)
