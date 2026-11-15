@@ -32,20 +32,41 @@ function AutoGrad_MatMul(_lhs, _rhs, _reduceCount) : AutoGrad_Binary(_lhs, _rhs)
     var _rhs = self.input[1];
     var _grad = self.grad;
     
+    var _lhsWidth   = self.reduceCount;
+    var _rhsWidth   = self.reduceCount;
+    var _lhsHeight  = (_lhs.itemCount div _lhsWidth);
+    var _rhsHeight  = (_rhs.itemCount div _rhsWidth);
+    
     // dx : (y @ grad)
+    // forward  : lhs[MN] x rhs[MO] => out[NO]
+    // backward : rhs[MO] x out.grad[NO] => lhs.grad[MN]
+    // Both needs to be permutated.
+    // backward : rhs[OM] x out.grad[ON] => lhs.grad[MN]
+    // -> Result doesn't need permutation.
     if (_lhs.grad != undefined)
     {
       Tensor_Workspace_Begin();
-      _lhs.grad.OpMatMul(_rhs, _grad, self.dxReduceCount);
+      var _tempA = Tensor_Workspace_Get();
+      var _tempB = Tensor_Workspace_Get();
+      _tempA.OpPermuteMatrix(_rhs,  _rhsWidth);
+      _tempB.OpPermuteMatrix(_grad, _lhsHeight);
+      _lhs.grad.OpMatMul(_tempA, _tempB, _rhsHeight);
       Tensor_Workspace_End();
       _lhs.Backward();
     }
     
     // dy : (x @ grad)
+    // forward  : lhs[MN] x rhs[MO] => out[NO]
+    // backward : lhs[MN] x out.grad[NO] => rhs.grad[MO]
+    // Lhs only needs to be permutated.
+    // backward : lhs[NM] x out.grad[NO] => rhs.grad[MO]
+    // -> Result doesn't need permutation.
     if (_rhs.grad != undefined)
     {
       Tensor_Workspace_Begin();
-      _rhs.grad.OpMatMul(_lhs, _grad, self.dyReduceCount);
+      var _tempA = Tensor_Workspace_Get();
+      _tempA.OpPermuteMatrix(_lhs, _lhsWidth);
+      _rhs.grad.OpMatMul(_tempA, _tempB, _lhsHeight);
       Tensor_Workspace_End();
       _rhs.Backward();
     }
@@ -63,18 +84,6 @@ function AutoGrad_MatMul(_lhs, _rhs, _reduceCount) : AutoGrad_Binary(_lhs, _rhs)
   // 
   self.reduceCount = _reduceCount;
   
-  // 
-  self.dxReduceCount = 1;
-  
-  // 
-  self.dyReduceCount = 1;
-  
-  // What axis should be used partial derivative dx
-  self.dxAxis = [ [ ], [ ] ];
-  
-  // What axis should be used partial derivative dy
-  self.dyAxis = [ [ ], [ ] ];
-  
   
   #endregion 
   // 
@@ -83,16 +92,6 @@ function AutoGrad_MatMul(_lhs, _rhs, _reduceCount) : AutoGrad_Binary(_lhs, _rhs)
   #region APPLY THE ARGUMENTS.
   
   
-  // 
-  self.reduceCount = _reduceCount;
-  
-  // 
-  self.dxAxis[0] = 0
-  self.dxAxis[1] = 0
-  
-  // 
-  self.dyAxis[0] = 0
-  self.dyAxis[1] = 0
   
   
   #endregion 
