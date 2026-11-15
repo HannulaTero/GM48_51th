@@ -12,5 +12,10 @@ CrawlFoldersAndFiles(ROOT);
 DebugTimingPop("Crawled files & folders in : {0} ms");
 
 
+DebugTimingPush();
+FindFiletypes(ROOT, SHADER_FILES);
+DebugTimingPop("Searched specific file-types: {0} ms");
+
+
 instance_create_depth(0, 0, 0, OBJ_Preprocessor_Pre_LoadShaderFiles);
 instance_destroy();
