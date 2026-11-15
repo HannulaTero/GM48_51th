@@ -38,36 +38,12 @@ function __Tensor__OpTensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis)
   rhsTemp.ReserveCapacity(_rhs.itemCount);
   
   
-  // Find how the axis need to be moved.
-  var _lhsDstAxis = [ ];
-  var _rhsDstAxis = [ ];
-  for(var i = 0; i < _axisCount; i++)
-  {
-    array_push(_lhsDstAxis, _lhsAxis[i]);
-    array_push(_rhsDstAxis, _rhsAxis[i]);
-  }
-  
-  for(var i = 0; i < self.rank; i++)
-  {
-    if (array_get_index(_lhsAxis, i) < 0)
-    {
-      array_push(_lhsDstAxis, i);
-    }
-    if (array_get_index(_rhsAxis, i) < 0)
-    {
-      array_push(_rhsDstAxis, i);
-    }
-  }
-  
-  
   // Permute the inputs.
-  var _srcAxis = array_create_ext(self.rank, function(_index)
-  {
-    return _index;
-  });
-  
-  lhsTemp.OpPermute(_lhs, _srcAxis, _lhsDstAxis);
-  rhsTemp.OpPermute(_rhs, _srcAxis, _rhsDstAxis);
+  var _srcAxis = GetArrayOfIndexes(self.rank);
+  var _lhsDstAxis = Tensor_AxisIndexMapping(_lhsAxis, self.rank);
+  var _rhsDstAxis = Tensor_AxisIndexMapping(_rhsAxis, self.rank);
+  lhsTemp.OpPermute(_lhs, _lhsDstAxis, _srcAxis);
+  rhsTemp.OpPermute(_rhs, _rhsDstAxis, _srcAxis);
   
   
   // Apply the matrix multiplication.

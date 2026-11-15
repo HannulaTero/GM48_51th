@@ -59,14 +59,15 @@ function AutoGrad_TensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis) : AutoGrad_Binary(_l
     var _lhs = self.input[0];
     var _rhs = self.input[1];
     var _grad = self.grad;
-    var _dxAxis = self.dxAxis;
     var _dyAxis = self.dyAxis;
     
     // dx : (y @ grad)
     if (_lhs.grad != undefined)
     {
       Tensor_Workspace_Begin();
-      _lhs.grad.OpTensorMul(_rhs, _grad, _dxAxis[0], _dxAxis[1]);
+      var _tempA = Tensor_Workspace_Get(_lhs.grad.itemCount);
+      _tempA.OpTensorMul(_rhs, _grad, self.dxAxis[0], self.dxAxis[1]);
+      _lhs.grad.OpPermute(_tempA, self.dxPermute[0], self.dxPermute[1]);
       Tensor_Workspace_End();
       _lhs.Backward();
     }
@@ -75,7 +76,9 @@ function AutoGrad_TensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis) : AutoGrad_Binary(_l
     if (_rhs.grad != undefined)
     {
       Tensor_Workspace_Begin();
-      _rhs.grad.OpTensorMul(_lhs, _grad, _dyAxis[0], _dyAxis[1]);
+      var _tempA = Tensor_Workspace_Get(_lhs.grad.itemCount);
+      _tempA.OpTensorMul(_lhs, _grad, self.dyAxis[0], self.dyAxis[1]);
+      _rhs.grad.OpPermute(_tempA, self.dyPermute[0], self.dyPermute[1]);
       Tensor_Workspace_End();
       _rhs.Backward();
     }
@@ -90,13 +93,19 @@ function AutoGrad_TensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis) : AutoGrad_Binary(_l
   #region DECLARE VARIABLES.
   
   
-  // 
+  // Forward axis.
   self.axis = [ [ ], [ ] ];
   
   // What axis should be used partial derivative dx
   self.dxAxis = [ [ ], [ ] ];
   
   // What axis should be used partial derivative dy
+  self.dyAxis = [ [ ], [ ] ];
+  
+  // How dx should be permuted.
+  self.dxPermute = [ [ ], [ ] ];
+  
+  // How dy should be permuted.
   self.dyAxis = [ [ ], [ ] ];
   
   
@@ -113,13 +122,56 @@ function AutoGrad_TensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis) : AutoGrad_Binary(_l
   // 
   self.axis[1] = variable_clone(_rhsAxis);
   
-  // 
-  self.dxAxis[0] = 0
-  self.dxAxis[1] = 0
   
-  // 
-  self.dyAxis[0] = 0
-  self.dyAxis[1] = 0
+  // Solve the partial derivative dy axis indexes.
+  {
+    self.dyAxis[0] = GetArrayOfIndexes(self.input[0].rank);
+    array_filter_ext(self.dyAxis[0], function(_element)
+    {
+      return (array_get_index(self.axis[0], _element) < 0);
+    });
+  
+    var _count = array_length(self.dyAxis[0]);
+    var _target = self.dyAxis[1];
+    for(var i = 0; i < _count; i++)
+    {
+      array_push(_target, i);
+    }
+  }
+  
+  
+  // Solve the partial derivative dx axis indexes for input.
+  {
+    self.dxAxis[0] = GetArrayOfIndexes(self.input[1].rank);
+    array_filter_ext(self.dxAxis[0], function(_element)
+    {
+      return (array_get_index(self.axis[1], _element) < 0);
+    });
+    
+    var _start = array_length(self.dyAxis[0]);
+    var _count = self.output.rank;
+    var _target = self.dxAxis[1];
+    for(var i = _start; i < _count; i++)
+    {
+      array_push(_target, i);
+    }
+  }
+  
+  
+  // Solve the permutations for dx.
+  {
+    var _rank = self.input[0].rank;
+    self.dxPermute[0] = GetArrayOfIndexes(_rank);
+    self.dxPermute[1] = Tensor_AxisIndexMapping(_lhsAxis, _rank);
+  }
+  
+  
+  // Solve the permutations for dy.
+  {
+    var _rank = self.input[1].rank;
+    self.dyPermute[0] = GetArrayOfIndexes(_rank);
+    self.dyPermute[1] = Tensor_AxisIndexMapping(_rhsAxis, _rank);
+  }
   
   
   #endregion 

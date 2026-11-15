@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"MACROS",
+  "%Name":"Tensor_MACROS",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"MACROS",
+  "name":"Tensor_MACROS",
   "parent":{
-    "name":"Initialize",
-    "path":"folders/Initialize.yy",
+    "name":"Neural Network",
+    "path":"folders/Neural Network.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
