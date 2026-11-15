@@ -15,6 +15,7 @@ function AutoGrad_Cos(_src) : AutoGrad_Unary(_src) constructor
   
   static Forward = function()
   {
+    self.ForwardInputs();
     self.output.OpCos(self.input[0]);
   };
   

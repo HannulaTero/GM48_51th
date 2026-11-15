@@ -30,6 +30,11 @@ function Tensor(_shape=undefined, _hasGrad=true) constructor
   static Reshape          = __Tensor__Reshape;
   static Verify           = __Tensor__Verify;
   
+  // Operations : AutoGrad
+  static Forward        = NO_OP;
+  static ForwardInputs  = NO_OP;
+  static Backward       = NO_OP;
+  
   // Operations : General
   static OpBinary     = __Tensor__OpBinary;
   static OpPermute    = __Tensor__OpPermute;
@@ -178,7 +183,7 @@ function Tensor(_shape=undefined, _hasGrad=true) constructor
   
   if (_hasGrad == true)
   {
-    self.grad = new Tensor(_shape);
+    self.grad = new Tensor(_shape, false);
   }
   
   

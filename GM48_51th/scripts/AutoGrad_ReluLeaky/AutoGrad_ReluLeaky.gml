@@ -15,6 +15,7 @@ function AutoGrad_ReluLeaky(_src) : AutoGrad_Unary(_src) constructor
   
   static Forward = function()
   {
+    self.ForwardInputs();
     self.output.OpReluLeaky(self.input[0]);
   };
   

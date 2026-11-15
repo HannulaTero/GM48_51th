@@ -10,8 +10,8 @@
 */ 
 function __Tensor__OpTensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis)
 {
-  static lhsTemp = new Tensor();
-  static rhsTemp = new Tensor();
+  static lhsTemp = new Tensor(undefined, false);
+  static rhsTemp = new Tensor(undefined, false);
   
   
   // Sanity checks. 

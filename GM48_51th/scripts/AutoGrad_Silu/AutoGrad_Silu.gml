@@ -15,6 +15,7 @@ function AutoGrad_Silu(_src) : AutoGrad_Unary(_src) constructor
   
   static Forward = function()
   {
+    self.ForwardInputs();
     self.output.OpSilu(self.input[0]);
   };
   

@@ -16,6 +16,7 @@ function AutoGrad_Pow(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
   
   static Forward = function()
   {
+    self.ForwardInputs();
     self.output.OpDiv(self.input[0], self.input[1]);
   };
   

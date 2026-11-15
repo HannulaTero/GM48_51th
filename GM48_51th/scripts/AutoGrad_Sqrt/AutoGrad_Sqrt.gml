@@ -15,6 +15,7 @@ function AutoGrad_Sqrt(_src) : AutoGrad_Unary(_src) constructor
   
   static Forward = function()
   {
+    self.ForwardInputs();
     self.output.OpSqrt(self.input[0]);
   };
   

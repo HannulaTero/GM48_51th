@@ -15,6 +15,7 @@ function AutoGrad_Tanh(_src) : AutoGrad_Unary(_src) constructor
   
   static Forward = function()
   {
+    self.ForwardInputs();
     self.output.OpTanh(self.input[0]);
   };
   

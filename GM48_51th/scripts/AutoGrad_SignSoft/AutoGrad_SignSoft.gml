@@ -15,6 +15,7 @@ function AutoGrad_SignSoft(_src) : AutoGrad_Unary(_src) constructor
   
   static Forward = function()
   {
+    self.ForwardInputs();
     self.output.OpSigmoid(self.input[0]);
   };
   

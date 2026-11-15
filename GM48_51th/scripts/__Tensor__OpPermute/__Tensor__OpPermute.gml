@@ -10,7 +10,7 @@
 */ 
 function __Tensor__OpPermute(_src, _srcAxis, _dstAxis)
 {
-  static params = new Tensor();
+  static params = new Tensor(undefined, false);
   static buffer = buffer_create(1, buffer_fixed, TENSOR_DSIZE);
   
   

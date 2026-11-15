@@ -13,6 +13,14 @@ function AutoGrad() constructor
   static Forward  = NO_OP;
   static Backward = NO_OP;
   
+  static ForwardInputs = function()
+  {
+    array_foreach(self.input, function(_input, _index)
+    {
+      _input.Forward();
+    });
+  };
+  
   
   #endregion 
   // 

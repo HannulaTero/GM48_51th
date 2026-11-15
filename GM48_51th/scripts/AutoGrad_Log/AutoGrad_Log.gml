@@ -15,6 +15,7 @@ function AutoGrad_Log(_src) : AutoGrad_Unary(_src) constructor
   
   static Forward = function()
   {
+    self.ForwardInputs();
     self.output.OpLog(self.input[0]);
   };
   

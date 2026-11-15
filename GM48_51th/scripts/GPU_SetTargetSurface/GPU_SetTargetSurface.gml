@@ -7,7 +7,7 @@
 */ 
 function GPU_SetTargetSurface(_target)
 {
-  static tensor = new Tensor();
+  static tensor = new Tensor(undefined, false);
   
   if (surface_exists(_target) == false)
   {
