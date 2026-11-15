@@ -102,7 +102,7 @@ function AutoGrad_MatMul(_lhs, _rhs, _reduceCount) : Tensor() constructor
   {
     var _shape = [ ];
     
-    var _lhsStride = 1.0;
+    var _lhsStride = 1;
     for(var i = 0; i < _lhs.rank; i++)
     {
       _lhsStride *= _lhs.shape[i];
@@ -112,7 +112,7 @@ function AutoGrad_MatMul(_lhs, _rhs, _reduceCount) : Tensor() constructor
       }
     }
     
-    var _rhsStride = 1.0;
+    var _rhsStride = 1;
     for(var i = 0; i < _rhs.rank; i++)
     {
       _rhsStride *= _rhs.shape[i];
@@ -120,6 +120,11 @@ function AutoGrad_MatMul(_lhs, _rhs, _reduceCount) : Tensor() constructor
       {
         array_push(_shape, _rhs.shape[i]);
       }
+    }
+    
+    if (array_length(_shape) <= 0)
+    {
+      array_push(_shape, 1);
     }
     
     self.Reshape(_shape);

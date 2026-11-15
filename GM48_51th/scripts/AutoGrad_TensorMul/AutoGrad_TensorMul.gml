@@ -76,7 +76,7 @@ function AutoGrad_TensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis) : Tensor() construct
     if (_rhs.grad != undefined)
     {
       Tensor_Workspace_Begin();
-      var _tempA = Tensor_Workspace_Get(_lhs.grad.shape);
+      var _tempA = Tensor_Workspace_Get(_rhs.grad.shape);
       _tempA.OpTensorMul(_lhs, _grad, self.dyAxis[0], self.dyAxis[1]);
       _rhs.grad.OpPermute(_tempA, self.dyPermute[0], self.dyPermute[1]);
       Tensor_Workspace_End();

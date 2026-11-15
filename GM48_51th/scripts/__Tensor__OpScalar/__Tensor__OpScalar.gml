@@ -13,7 +13,7 @@ function __Tensor__OpScalar(_src, _value, _shader)
   GPU_SetState();
   GPU_SetShader(_shader);
   GPU_SetUniform_Sample("FSH_Src_Sampler",  _src);
-  GPU_SetUniform_FloatN("FSH_Src_Meta",     _src.meta);
+  GPU_SetUniform_FloatN("FSH_Src_Meta",     _src.surfaceMeta);
   GPU_SetUniform_Float1("FSH_Value",        _value);
   GPU_SetTarget(self);
   GPU_Dispatch();

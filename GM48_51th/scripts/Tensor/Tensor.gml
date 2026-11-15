@@ -174,7 +174,7 @@ function Tensor(_shape=undefined, _hasGrad=true, _learnable=false) constructor
   self.input = [ ];
   
   // If doing autograd and optimizing, whether learnable.
-  self.learnable = false;
+  self.learnable = _learnable;
   
   
   #endregion

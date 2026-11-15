@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"SHD_Visualize",
+  "name":"SHD_Visualize",
+  "parent":{
+    "name":"Gameplay",
+    "path":"folders/Gameplay.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}
