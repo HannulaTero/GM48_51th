@@ -26,10 +26,10 @@ array_foreach(self.filesShader, function(_file, _index)
   
   
   // Read the hash of the file.
-  // It is the comment of first line
-  // Example: "// 5eb63bbbe01eeed093cb22bb8f5acdc3"
+  // It is the comment of first line, starts with marker.
+  // Example: "// {MARKER} : 5eb63bbbe01eeed093cb22bb8f5acdc3"
   static sizeMD5 = 32;
-  static expectedSize = (sizeMD5 + 3);
+  static expectedSize = (sizeMD5 + string_length(MARKER));
   static tempBuffer = buffer_create(sizeMD5, buffer_fixed, 1);
   
   if (buffer_get_size(_cacheFile.buffer) < expectedSize)
@@ -52,18 +52,10 @@ array_foreach(self.filesShader, function(_file, _index)
   
   // Cache is valid.
   _file.cache = _cacheFile;
+  _file.processed = _cacheFile.buffer;
   array_push(PRE_FILES_READY, _file);
 });
 DebugTimingPop("Checked caches in {0} ms");
-
-
-// Read the sources for files, which need reprocessing.
-DebugTimingPush();
-array_foreach(PRE_FILES_REPROCESS, function(_file, _index)
-{
-  _file.source = buffer_peek(_file.buffer, 0, buffer_text);
-});
-DebugTimingPop("Read sources for files needing reprocessing, in {0} ms");
 
 
 // Move to the next operation.

@@ -51,16 +51,43 @@ DebugTimingPop("Import-mappings dependencies done in {0} ms");
 DebugTimingPush();
 array_foreach(PRE_FILES_REPROCESS, function(_file, _index)
 {
+  // Preprocess the source.
   var _ext = filename_ext(_file.name);
   var _type = string_delete(_ext, 1, 1);
   var _mapping = PRE_IMPORT_MAPPING[$ _type];
-  _file.source = PreprocessShaderImports(_file.source, _mapping);
+  var _source = buffer_peek(_file.buffer, 0, buffer_text);
+  _source = PreprocessShaderImports(_source, _mapping);
+  
+  
+  // Sanity check - File to be reprocessed shouldn't have marker
+  // -> If it does, something has gone wrong!
+  if (string_starts_with(_source, MARKER) == true)
+  {
+    throw(
+      $"Something has gone horrible wrong!\n" + 
+      $"-> Reprocessing processed file : {_file.name}"
+    );
+  }
+  
+  
+  // Create buffer with processed contents.
+  // This includes the hash-value at the start.
+  var _buffer = buffer_create(1, buffer_grow, 1);
+  buffer_seek(_buffer, buffer_seek_start, 0);
+  buffer_write(_buffer, buffer_text, MARKER);
+  buffer_write(_buffer, buffer_text, _file.hash);
+  buffer_write(_buffer, buffer_text, "\n");
+  buffer_write(_buffer, buffer_text, _source);
+  buffer_resize(_buffer, buffer_tell(_buffer));
+  _file.processed = _buffer;
+  
+  array_push(PRE_FILES_READY, _file);
 });
 DebugTimingPop("Preprocessed the shaders in {0} ms");
 
 
 // Move to the next operation.
-instance_create_depth(0, 0, 0, OBJ_Preprocessor_Pre_);
+instance_create_depth(0, 0, 0, OBJ_Preprocessor_Pre_SaveBackupsAndCaches);
 instance_destroy();
 exit;
 

@@ -2,6 +2,10 @@
 
 #macro IMPORT_KEYWORD \
   "#pragma import"
+  
+  
+#macro MARKER \
+  "// <!AUTO-GENERATED!> : "
 
 
 #macro PATH_ROOT \ 

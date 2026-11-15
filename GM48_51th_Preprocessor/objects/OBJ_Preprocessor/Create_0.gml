@@ -25,7 +25,7 @@ for(var i = 0; i < _count; i++)
     }
     
     case "--post" : {
-      _operation = OBJ_Preprocessor_Post;
+      _operation = OBJ_Preprocessor_Post_LoadBackups;
       break;
     }
     
