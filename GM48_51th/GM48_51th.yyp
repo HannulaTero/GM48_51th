@@ -58,6 +58,7 @@
     {"id":{"name":"OBJ_Gameplay","path":"objects/OBJ_Gameplay/OBJ_Gameplay.yy",},},
     {"id":{"name":"OBJ_Initialize","path":"objects/OBJ_Initialize/OBJ_Initialize.yy",},},
     {"id":{"name":"OBJ_NotSupported","path":"objects/OBJ_NotSupported/OBJ_NotSupported.yy",},},
+    {"id":{"name":"OBJ_Test_1","path":"objects/OBJ_Test_1/OBJ_Test_1.yy",},},
     {"id":{"name":"OBJ_Test","path":"objects/OBJ_Test/OBJ_Test.yy",},},
     {"id":{"name":"Object5","path":"objects/Object5/Object5.yy",},},
     {"id":{"name":"RM_Gameplay","path":"rooms/RM_Gameplay/RM_Gameplay.yy",},},
