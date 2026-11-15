@@ -1,0 +1,11 @@
+#pragma import(Permute)
+
+float Get(sampler2D tex, vec4 meta, vec2 position)
+{
+  return texture2DLod(tex, (position + 0.5) * meta.xy, 0.0)[0];
+}
+
+float Get(sampler2D tex, vec4 meta, float idx)
+{
+  return Get(tex, meta, Permute(meta, idx));
+}

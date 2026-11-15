@@ -1,0 +1,11 @@
+#pragma import(IModDiv)
+
+vec2 Permute(vec4 meta, float idx)
+{
+  return IModDiv(idx, meta.z);
+}
+
+float Permute(vec4 meta, vec2 pos)
+{
+  return (pos.x + pos.y * meta.z);
+}

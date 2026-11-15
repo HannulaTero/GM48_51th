@@ -1,0 +1,4 @@
+float IDiv(float lhs, float rhs)
+{
+  return floor((lhs + 0.5) / rhs);
+}

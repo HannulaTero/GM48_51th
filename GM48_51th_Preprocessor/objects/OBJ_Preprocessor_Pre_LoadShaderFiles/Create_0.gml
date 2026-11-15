@@ -12,7 +12,7 @@ DebugTimingPush();
 
 self.pendingRequests = ds_map_create();
 
-struct_foreach(self.shaderFiles, function(_key, _array)
+struct_foreach(SHADER_FILES, function(_key, _array)
 {
   static functor = function(_file, _index)
   {

@@ -1,0 +1,39 @@
+//=============================================================
+#pragma import(Header)
+//=============================================================
+
+
+// The uniforms.
+uniform vec4 FSH_Dst_Meta;
+uniform vec4 FSH_Src_Meta;
+
+// Imports.
+#pragma import(Get)
+
+//=============================================================
+// 
+// OPERATION - DEFINE FUNCTION WHERE INLINED.
+float Operation(float src);
+
+
+//=============================================================
+
+
+void main()
+{
+  vec2 dstPosition = floor(gl_FragCoord.xy);
+  float dstIndex = Permute(FSH_Dst_Meta, dstPosition);
+  
+  float sample = Get(
+    gm_BaseTexture, 
+    FSH_Src_Meta, 
+    dstIndex
+  );
+  
+  float result = Operation(sample);
+  
+  gl_FragData[0] = vec4(result);
+}
+
+
+//=============================================================
