@@ -16,18 +16,19 @@ function Tensor(_shape=undefined, _hasGrad=true) constructor
   
   
   // General methods.
-  static ArrayPull  = __Tensor__ArrayPull;
-  static ArrayPush  = __Tensor__ArrayPush;
-  static BufferPull = __Tensor__BufferPull;
-  static BufferPush = __Tensor__BufferPush;
-  static Exists     = __Tensor__Exists;
-  static Free       = __Tensor__Free;
-  static GetSurface = __Tensor__GetSurface;
-  static GetTexture = __Tensor__GetTexture;
-  static MatchShape = __Tensor__MatchShape;
-  static MatchSize  = __Tensor__MatchSize;
-  static Reshape    = __Tensor__Reshape;
-  static Verify     = __Tensor__Verify;
+  static ArrayPull        = __Tensor__ArrayPull;
+  static ArrayPush        = __Tensor__ArrayPush;
+  static BufferPull       = __Tensor__BufferPull;
+  static BufferPush       = __Tensor__BufferPush;
+  static Exists           = __Tensor__Exists;
+  static Free             = __Tensor__Free;
+  static GetSurface       = __Tensor__GetSurface;
+  static GetTexture       = __Tensor__GetTexture;
+  static MatchShape       = __Tensor__MatchShape;
+  static MatchSize        = __Tensor__MatchSize;
+  static ReserveCapacity  = __Tensor__ReserveCapacity;
+  static Reshape          = __Tensor__Reshape;
+  static Verify           = __Tensor__Verify;
   
   // Operations : General
   static OpPermute    = __Tensor__OpPermute;
@@ -36,13 +37,26 @@ function Tensor(_shape=undefined, _hasGrad=true) constructor
   
   // Operations : Scalar.
   static OpScalarAdd      = __Tensor__OpScalarAdd;
+  static OpScalarClamp    = __Tensor__OpScalarClamp;
   static OpScalarDecr     = __Tensor__OpScalarDecr;
+  static OpScalarDiv      = __Tensor__OpScalarDiv;
   static OpScalarIncr     = __Tensor__OpScalarIncr;
   static OpScalarMax      = __Tensor__OpScalarMax;
   static OpScalarMin      = __Tensor__OpScalarMin;
+  static OpScalarMul      = __Tensor__OpScalarMul;
+  static OpScalarPow      = __Tensor__OpScalarPow;
   static OpScalarSet      = __Tensor__OpScalarSet;
   static OpScalarSetOne   = __Tensor__OpScalarSetOne;
   static OpScalarSetZero  = __Tensor__OpScalarSetZero;
+  static OpScalarSub      = __Tensor__OpScalarSetSub;
+  
+  // Operations : Inplace Scalar operations.
+  static OpScalarInplaceAdd   = __Tensor__OpScalarInplaceAdd;
+  static OpScalarInplaceClamp = __Tensor__OpScalarInplaceClamp;
+  static OpScalarInplaceDecr  = __Tensor__OpScalarInplaceDecr;
+  static OpScalarInplaceIncr  = __Tensor__OpScalarInplaceIncr;
+  static OpScalarInplaceMax   = __Tensor__OpScalarInplaceMax;
+  static OpScalarInplaceMin   = __Tensor__OpScalarInplaceMin;
   
   // Operations : Unary.
   static OpAbs        = __Tensor__OpAbs;

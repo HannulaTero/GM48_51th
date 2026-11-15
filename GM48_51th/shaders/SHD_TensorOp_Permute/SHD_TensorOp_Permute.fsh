@@ -10,9 +10,10 @@
 uniform sampler2D FSH_Params_Sampler;
 uniform vec4 FSH_Params_Meta;
 
-#define FSH_Src_Sampler gm_BaseTexture
-uniform vec4 FSH_Dst_Meta;
+uniform sampler2D FSH_Src_Sampler;
 uniform vec4 FSH_Src_Meta;
+
+uniform vec4 FSH_Dst_Meta;
 uniform float FSH_Dst_Rank;
 
 

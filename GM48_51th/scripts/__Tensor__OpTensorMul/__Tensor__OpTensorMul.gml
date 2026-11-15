@@ -33,26 +33,9 @@ function __Tensor__OpTensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis)
   }
   
   
-  // Resize the helper tensors.
-  if (lhsTemp.surfaceCapacity < _lhs.itemCount)
-  {
-    var _log  = ceil(log2(_lhs.itemCount));
-    var _logW = ceil(_log * 0.5);
-    var _logH = (_log - _logW);
-    var _w = power(2.0, _logW);
-    var _h = power(2.0, _logH);
-    lhsTemp.Reshape(_lhs.shape, [ _w, _h ]);
-  }
-  
-  if (rhsTemp.surfaceCapacity < _rhs.itemCount)
-  {
-    var _log  = ceil(log2(_lhs.itemCount));
-    var _logW = ceil(_log * 0.5);
-    var _logH = (_log - _logW);
-    var _w = power(2.0, _logW);
-    var _h = power(2.0, _logH);
-    rhsTemp.Reshape(_rhs.shape, [ _w, _h ]);
-  }
+  // Ensure the helper tensors have enough capacity.
+  lhsTemp.ReserveCapacity(_lhs.itemCount);
+  rhsTemp.ReserveCapacity(_rhs.itemCount);
   
   
   // Find how the axis need to be moved.

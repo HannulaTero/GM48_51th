@@ -1,0 +1,46 @@
+//=============================================================
+#pragma import(Header)
+//=============================================================
+// 
+#region UNIFORMS ETC.
+
+
+// The uniforms.
+uniform sampler2D FSH_Dst_Sampler;
+uniform vec4 FSH_Dst_Meta;
+
+uniform float FSH_Value;
+
+
+//=============================================================
+//
+// OPERATION - DEFINE FUNCTION WHERE INLINED.
+
+float Operation(float lhs, float rhs);
+
+
+#endregion
+// 
+//=============================================================
+// 
+#region MAIN FUNCTION.
+
+
+void main()
+{
+  vec2 dstPosition = floor(gl_FragCoord.xy);
+  float dstIndex = Permute(FSH_Dst_Meta, dstPosition);
+  
+  float sample = Get(
+    FSH_Src_Sampler,
+    FSH_Src_Meta,
+    dstIndex
+  );
+  
+  gl_FragData[0] = Operation(sample, FSH_Value);
+}
+
+
+#endregion
+// 
+//=============================================================

@@ -1,0 +1,61 @@
+
+
+
+/**
+*
+* 
+* @param {Struct.Tensor} _lhs
+* @param {Struct.Tensor} _rhs
+*/ 
+function AutoGrad_Sub(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
+{
+  //===========================================================
+  // 
+  #region STATIC METHODS.
+  
+  
+  static Forward = function()
+  {
+    self.output.OpSub(self.input[0], self.input[1]);
+  };
+  
+  
+  static Backward = function()
+  {
+    // dx : 1.0
+    if (self.input[0].grad != undefined)
+    {
+      self.input[0].grad.OpSet(self.grad);
+      self.input[0].Backward();
+    }
+    
+    // dy : -1.0
+    if (self.input[1].grad != undefined)
+    {
+      self.input[1].grad.OpNeg(self.grad);
+      self.input[1].Backward();
+    }
+  };
+  
+  
+  
+  #endregion 
+  // 
+  //===========================================================
+  // 
+  #region DECLARE VARIABLES.
+  
+  
+  
+  #endregion 
+  // 
+  //===========================================================
+  // 
+  #region APPLY THE ARGUMENTS.
+  
+  
+  
+  #endregion 
+  // 
+  //===========================================================
+}

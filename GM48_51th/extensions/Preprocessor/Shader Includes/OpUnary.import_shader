@@ -4,8 +4,9 @@
 
 
 // The uniforms.
-uniform vec4 FSH_Dst_Meta;
+uniform sampler2D FSH_Src_Sampler;
 uniform vec4 FSH_Src_Meta;
+uniform vec4 FSH_Dst_Meta;
 
 
 //=============================================================
@@ -23,7 +24,7 @@ void main()
   float dstIndex = Permute(FSH_Dst_Meta, dstPosition);
   
   float sample = Get(
-    gm_BaseTexture, 
+    FSH_Src_Sampler, 
     FSH_Src_Meta, 
     dstIndex
   );

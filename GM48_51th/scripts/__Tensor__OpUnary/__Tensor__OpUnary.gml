@@ -17,10 +17,11 @@ function __Tensor__OpUnary(_src, _shader)
   
   GPU_SetState();
   GPU_SetShader(_shader);
-  GPU_SetUniform_FloatN("FSH_Dst_Meta", self.surfaceMeta);
+  GPU_SetUniform_FloatN("FSH_Src_Sampler", _src);
   GPU_SetUniform_FloatN("FSH_Src_Meta", _src.surfaceMeta);
+  GPU_SetUniform_FloatN("FSH_Dst_Meta", self.surfaceMeta);
   GPU_SetTarget(self);
-  GPU_Dispatch_WholeSurface(_src);
+  GPU_Dispatch();
   GPU_EndTarget();
   GPU_EndShader();
   GPU_EndState();

@@ -6,8 +6,10 @@
 
 
 // The uniforms.
-uniform vec2 FSH_Offset;
+uniform sampler2D FSH_PRNG_Sampler;
 uniform vec4 FSH_PRNG_Meta;
+
+uniform vec2 FSH_Offset;
 uniform vec2 FSH_Range;
 
 
@@ -23,7 +25,7 @@ void main()
   vec2 position = floor(gl_FragCoord.xy);
   
   float sample = Get(
-    gm_BaseTexture, 
+    FSH_PRNG_Sampler, 
     FSH_PRNG_Meta, 
     FSH_Offset + position
   );
