@@ -100,6 +100,27 @@ function AutoGrad_MatMul(_lhs, _rhs, _reduceCount) : Tensor() constructor
   
   // Reshape the output tensor.
   {
+    var _shape = [ ];
+    
+    var _lhsStride = 1.0;
+    for(var i = 0; i < _lhs.rank; i++)
+    {
+      _lhsStride *= _lhs.shape[i];
+      if (_lhsStride > _reduceCount)
+      {
+        array_push(_shape, _lhs.shape[i]);
+      }
+    }
+    
+    var _rhsStride = 1.0;
+    for(var i = 0; i < _rhs.rank; i++)
+    {
+      _rhsStride *= _rhs.shape[i];
+      if (_rhsStride > _reduceCount)
+      {
+        array_push(_shape, _rhs.shape[i]);
+      }
+    }
     
     self.Reshape(_shape);
   }
