@@ -1,5 +1,9 @@
 /// @desc 
 
+
+window_set_position(0, 0);
+
+
 // What action shoud be taken next.
 var _operation = undefined;
 
@@ -57,9 +61,15 @@ ROOT = new Folder(
   PATH_ROOT
 );
 
+DebugTimingPush();
+CrawlFoldersAndFiles(ROOT);
+DebugTimingPop("Crawled files & folders in : {0} ms");
+
 
 // Start the operation.
 instance_create_depth(0, 0, 0, _operation);
+instance_destroy();
+exit;
 
 
 

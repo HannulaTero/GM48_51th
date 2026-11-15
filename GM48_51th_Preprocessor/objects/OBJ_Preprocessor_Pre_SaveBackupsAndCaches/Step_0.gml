@@ -1,4 +1,4 @@
-/// @desc CHECK WHETHER ALL BUFFERS HAVE LOADED.
+/// @desc CHECK WHETHER ALL HAVE BEEN SAVED.
 
 if (ds_map_size(self.pendingRequests) > 0)
 {

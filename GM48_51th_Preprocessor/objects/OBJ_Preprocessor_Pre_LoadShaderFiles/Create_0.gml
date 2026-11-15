@@ -1,12 +1,6 @@
 /// @desc START LOADING ALL SHADERS.
 
 
-// Find all shader files.
-DebugTimingPush();
-FindFiletypes(ROOT, SHADER_FILES);
-DebugTimingPop("Found shaders in : {0} ms");
-
-
 // Start loading every shader to RAM.
 DebugTimingPush();
 

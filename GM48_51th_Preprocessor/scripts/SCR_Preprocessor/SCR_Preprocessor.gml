@@ -61,3 +61,9 @@
   };
 
 
+// The list of backups.
+#macro BACKUPS \
+  global.gBACKUPS
+  global.gBACKUPS = [ ];
+  
+

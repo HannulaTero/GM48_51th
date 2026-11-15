@@ -6,6 +6,7 @@ self.filesCaches = array_concat(
 );
 
 
+// Remove the caches.
 array_foreach(self.filesCaches, function(_file, _index)
 {
   file_delete(_file.path);
