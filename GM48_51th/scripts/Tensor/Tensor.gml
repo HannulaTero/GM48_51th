@@ -8,7 +8,7 @@
 * @param {Array<Real>}  _shape
 * @param {Bool}         _hasGrad
 */ 
-function Tensor(_shape=undefined, _hasGrad=false) constructor 
+function Tensor(_shape=undefined, _hasGrad=true) constructor 
 {
   //=============================================================
   // 
@@ -35,9 +35,14 @@ function Tensor(_shape=undefined, _hasGrad=false) constructor
   static OpTensorMul  = __Tensor__OpTensorMul;
   
   // Operations : Scalar.
-  static OpSetOne     = __Tensor__OpSetOne;
-  static OpSetScalar  = __Tensor__OpSetScalar;
-  static OpSetZero    = __Tensor__OpSetZero;
+  static OpScalarAdd      = __Tensor__OpScalarAdd;
+  static OpScalarDecr     = __Tensor__OpScalarDecr;
+  static OpScalarIncr     = __Tensor__OpScalarIncr;
+  static OpScalarMax      = __Tensor__OpScalarMax;
+  static OpScalarMin      = __Tensor__OpScalarMin;
+  static OpScalarSet      = __Tensor__OpScalarSet;
+  static OpScalarSetOne   = __Tensor__OpScalarSetOne;
+  static OpScalarSetZero  = __Tensor__OpScalarSetZero;
   
   // Operations : Unary.
   static OpAbs        = __Tensor__OpAbs;

@@ -1,7 +1,7 @@
 {
   "$GMShader":"",
-  "%Name":"SHD_TensorOp_SetScalar",
-  "name":"SHD_TensorOp_SetScalar",
+  "%Name":"SHD_TensorOp_ScalarSet",
+  "name":"SHD_TensorOp_ScalarSet",
   "parent":{
     "name":"Op Scalar",
     "path":"folders/Neural Network/Tensor/Op Scalar.yy",
