@@ -8,7 +8,7 @@
 */ 
 function GetArrayOfIndexes(_count)
 {
-  array_create_ext(_count, function(_index)
+  return array_create_ext(_count, function(_index)
   {
     return _index;
   });

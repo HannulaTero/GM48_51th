@@ -127,7 +127,7 @@ function AutoGrad_TensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis) : Tensor() construct
     
     for(var i = 0; i < _lhs.rank; i++)
     {
-      if (array_get_index(_lhsAxis, i) <= 0)
+      if (array_get_index(_lhsAxis, i) < 0)
       {
         array_push(_shape, _lhs.shape[i]);
       }
@@ -135,7 +135,7 @@ function AutoGrad_TensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis) : Tensor() construct
     
     for(var i = 0; i < _rhs.rank; i++)
     {
-      if (array_get_index(_rhsAxis, i) <= 0)
+      if (array_get_index(_rhsAxis, i) < 0)
       {
         array_push(_shape, _rhs.shape[i]);
       }
@@ -162,12 +162,12 @@ function AutoGrad_TensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis) : Tensor() construct
   // Solve the partial derivative dy axis indexes.
   {
     self.dyAxis[0] = GetArrayOfIndexes(self.input[0].rank);
-    array_filter_ext(self.dyAxis[0], function(_element)
+    var _count = array_filter_ext(self.dyAxis[0], function(_element)
     {
       return (array_get_index(self.axis[0], _element) < 0);
     });
+    array_resize(self.dyAxis[0], _count);
   
-    var _count = array_length(self.dyAxis[0]);
     var _target = self.dyAxis[1];
     for(var i = 0; i < _count; i++)
     {
@@ -179,15 +179,15 @@ function AutoGrad_TensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis) : Tensor() construct
   // Solve the partial derivative dx axis indexes for input.
   {
     self.dxAxis[0] = GetArrayOfIndexes(self.input[1].rank);
-    array_filter_ext(self.dxAxis[0], function(_element)
+    var _count = array_filter_ext(self.dxAxis[0], function(_element)
     {
       return (array_get_index(self.axis[1], _element) < 0);
     });
+    array_resize(self.dxAxis[0], _count);
     
     var _start = array_length(self.dyAxis[0]);
-    var _count = self.rank;
     var _target = self.dxAxis[1];
-    for(var i = _start; i < _count; i++)
+    for(var i = _start; i < self.rank; i++)
     {
       array_push(_target, i);
     }

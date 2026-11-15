@@ -14,7 +14,7 @@ function __Tensor__Reshape(_shape, _layout=undefined)
 {
   // Initialize the tensor metadata.
   self.shape      = variable_clone(_shape);
-  self.rank       = array_length(self.shape);
+  self.rank       = array_length(_shape);
   self.itemCount  = 1;
   array_resize(self.stride, self.rank);
   
@@ -49,8 +49,6 @@ function __Tensor__Reshape(_shape, _layout=undefined)
     }
     else
     {
-      show_debug_message("Given layout can't fit the shape!");
-      show_debug_message(" -> Updating layout to fit.");
       self.surfaceLayout[0] = ceil(sqrt(self.itemCount));
       self.surfaceLayout[1] = ceil(self.itemCount / self.surfaceLayout[0]);
     }

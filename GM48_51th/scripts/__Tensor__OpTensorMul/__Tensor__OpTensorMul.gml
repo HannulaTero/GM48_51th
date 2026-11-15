@@ -36,6 +36,8 @@ function __Tensor__OpTensorMul(_lhs, _rhs, _lhsAxis, _rhsAxis)
   // Ensure the helper tensors have enough capacity.
   lhsTemp.ReserveCapacity(_lhs.itemCount);
   rhsTemp.ReserveCapacity(_rhs.itemCount);
+  lhsTemp.Reshape(_lhs.shape, lhsTemp.surfaceLayout);
+  rhsTemp.Reshape(_rhs.shape, rhsTemp.surfaceLayout);
   
   
   // Permute the inputs.
