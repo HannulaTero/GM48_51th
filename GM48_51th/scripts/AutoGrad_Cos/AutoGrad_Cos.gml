@@ -33,8 +33,8 @@ function AutoGrad_Cos(_src) : AutoGrad_Unary(_src) constructor
       _tempA.OpSin(_src);
       _tempB.OpNeg(_tempA);
       _src.grad.OpMul(_tempB, self.grad);
-      _src.Backward();
       Tensor_Workspace_End();
+      _src.Backward();
     }
   };
   

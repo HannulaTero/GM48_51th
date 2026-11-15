@@ -34,8 +34,8 @@ function AutoGrad_Inv(_src) : AutoGrad_Unary(_src) constructor
       _tempB.OpInv(_tempA);
       _tempA.OpNeg(_tempB);
       _src.grad.OpMul(_tempA, self.grad);
-      _src.Backward();
       Tensor_Workspace_End();
+      _src.Backward();
     }
   };
   

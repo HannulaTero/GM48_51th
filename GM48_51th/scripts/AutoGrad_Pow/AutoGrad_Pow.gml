@@ -37,8 +37,8 @@ function AutoGrad_Pow(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
       _tempB.OpPow(_lhs, _tempA);
       _tempA.OpMul(_rhs, _tempB);
       _lhs.grad.OpMul(_tempA, self.grad);
-      _lhs.Backward();
       Tensor_Workspace_End();
+      _lhs.Backward();
     }
     
     // dy : (power(x, y) * log(x))
@@ -51,8 +51,8 @@ function AutoGrad_Pow(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
       _tempA.OpLog(_lhs);
       _tempB.OpMul(self.output, _tempA);
       _rhs.grad.OpMul(_tempB, self.grad);
-      _rhs.Backward();
       Tensor_Workspace_End();
+      _rhs.Backward();
     }
     
   };

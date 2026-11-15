@@ -34,8 +34,8 @@ function AutoGrad_Div(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
       var _tempA = Tensor_Workspace_Get(_capacity);
       _tempA.OpInv(_rhs);
       _lhs.grad.OpMul(_tempA, self.grad);
-      _lhs.Backward();
       Tensor_Workspace_End();
+      _lhs.Backward();
     }
     
     // dy : (-x / sqr(y))
@@ -48,8 +48,8 @@ function AutoGrad_Div(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
       _tempB.OpDiv(_lhs, _tempA);
       _tempA.OpNeg(_tempB);
       _rhs.grad.OpMul(_tempA, self.grad);
-      _rhs.Backward();
       Tensor_Workspace_End();
+      _rhs.Backward();
     }
   };
   

@@ -31,8 +31,8 @@ function AutoGrad_Relu(_src) : AutoGrad_Unary(_src) constructor
       var _tempA = Tensor_Workspace_Get(_src.itemCount);
       _tempA.OpGt(_src, 0.0);
       _src.grad.OpMul(_tempA, self.grad);
-      _src.Backward();
       Tensor_Workspace_End();
+      _src.Backward();
     }
   };
   

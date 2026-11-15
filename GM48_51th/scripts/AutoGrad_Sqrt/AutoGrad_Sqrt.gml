@@ -34,8 +34,8 @@ function AutoGrad_Sqrt(_src) : AutoGrad_Unary(_src) constructor
       _tempA.OpScalarMul(self.output, 2.0);
       _tempB.OpInv(_tempA);
       _src.grad.OpMul(_tempB, self.grad);
-      _src.Backward();
       Tensor_Workspace_End();
+      _src.Backward();
     }
   };
   

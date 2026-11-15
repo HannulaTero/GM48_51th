@@ -33,8 +33,8 @@ function AutoGrad_Log2(_src) : AutoGrad_Unary(_src) constructor
       _tempA.OpScalarMul(_src, ln(2));
       _tempB.OpInv(_tempA);
       _src.grad.OpMul(_tempB, self.grad);
-      _src.Backward();
       Tensor_Workspace_End();
+      _src.Backward();
     }
   };
   

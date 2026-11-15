@@ -31,8 +31,8 @@ function AutoGrad_SoftPlus(_src) : AutoGrad_Unary(_src) constructor
       var _tempA = Tensor_Workspace_Get(_src.itemCount);
       _tempA.OpUnary(_src, SHD_TensorDx_SoftPlus);
       _src.grad.OpMul(_tempA, self.grad);
-      _src.Backward();
       Tensor_Workspace_End();
+      _src.Backward();
     }
   };
   

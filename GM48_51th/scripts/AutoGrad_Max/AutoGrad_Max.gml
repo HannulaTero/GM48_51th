@@ -34,8 +34,8 @@ function AutoGrad_Max(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
       var _tempA = Tensor_Workspace_Get(_capacity);
       _tempA.OpGtEq(_lhs, _rhs);
       _lhs.grad.OpMul(_tempA, self.grad);
-      _lhs.Backward();
       Tensor_Workspace_End();
+      _lhs.Backward();
     }
     
     // dy : (x >= y) ? 0 : 1
@@ -45,8 +45,8 @@ function AutoGrad_Max(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
       var _tempA = Tensor_Workspace_Get(_capacity);
       _tempA.OpLt(_lhs, _rhs);
       _rhs.grad.OpMul(_lhs, self.grad);
-      _rhs.Backward();
       Tensor_Workspace_End();
+      _rhs.Backward();
     }
   };
   
