@@ -32,7 +32,7 @@ void main()
   indexes *= FSH_ReduceCount;
   
   
-  // Permute the index with tensor strides.
+  // Iterate through sum-reduceable area, calculating dot-product.
   float result = 0.0;
   for(float i = 0.0; i < 16777215.0; i++)
   {
