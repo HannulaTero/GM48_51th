@@ -1,1 +1,1 @@
-#pragma shady: inline(SHD_Utility.DEFAULT)
+#pragma import(Default)

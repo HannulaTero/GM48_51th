@@ -1,18 +1,14 @@
 //=============================================================
+#pragma import(Header)
+//=============================================================
 // 
 #region UNIFORMS ETC.
-
-
-#pragma shady: inline(SHD_Utility.HEADER)
 
 
 // The uniforms.
 uniform vec2 FSH_Offset;
 uniform vec4 FSH_PRNG_Meta;
 uniform vec2 FSH_Range;
-
-// Imports.
-#pragma shady: import(SHD_Utility_Get)
 
 
 #endregion

@@ -1,5 +1,5 @@
 //=============================================================
-#pragma shady: inline(SHD_TensorOp_Binary.BODY)
+#pragma import(OpBinary)
 //=============================================================
 
 float Operation(float lhs, float rhs)

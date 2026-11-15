@@ -1,5 +1,3 @@
-#pragma import(IDiv)
-
 vec2 IModDiv(float lhs, float rhs)
 {
   vec2 result;

@@ -1,5 +1,5 @@
 //=============================================================
-#pragma shady: inline(SHD_Utility.HEADER)
+#pragma import(Header)
 //=============================================================
 // 
 #region UNIFORMS ETC.

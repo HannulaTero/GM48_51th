@@ -1,5 +1,3 @@
-#pragma import(IDiv)
-
 float IMod(float lhs, float rhs)
 {
   return lhs - IDiv(lhs, rhs) * rhs;

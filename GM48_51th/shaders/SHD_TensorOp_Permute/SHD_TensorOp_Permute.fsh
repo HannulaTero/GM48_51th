@@ -1,7 +1,5 @@
 //=============================================================
-#pragma shady: macro_begin BODY
-//=============================================================
-#pragma shady: inline(SHD_Utility.HEADER)
+#pragma import(Header)
 //=============================================================
 // 
 #region UNIFORMS ETC.
@@ -16,10 +14,6 @@ uniform vec4 FSH_Params_Meta;
 uniform vec4 FSH_Dst_Meta;
 uniform vec4 FSH_Src_Meta;
 uniform float FSH_Dst_Rank;
-
-// Imports.
-#pragma shady: import(SHD_Utility_IModDiv)
-#pragma shady: import(SHD_Utility_Get)
 
 
 #endregion
@@ -81,6 +75,4 @@ void main()
 
 #endregion
 // 
-//=============================================================
-#pragma shady: macro_end
 //=============================================================

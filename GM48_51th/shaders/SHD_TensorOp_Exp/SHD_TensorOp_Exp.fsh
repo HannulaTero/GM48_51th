@@ -1,5 +1,5 @@
 //=============================================================
-#pragma shady: inline(SHD_TensorOp_Unary.BODY)
+#pragma import(OpUnary)
 //=============================================================
 
 float Operation(float src)

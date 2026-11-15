@@ -1,1 +1,0 @@
-#pragma shady: inline(SHD_Utility.DEFAULT)

@@ -10,9 +10,6 @@ uniform vec4 FSH_Dst_Meta;
 uniform vec4 FSH_Lhs_Meta;
 uniform vec4 FSH_Rhs_Meta;
 
-// Imports.
-#pragma import(Get)
-
 
 //=============================================================
 //

@@ -1,2 +1,8 @@
 // Set the qualifiers.
 precision highp float;
+
+#pragma import(IDiv)
+#pragma import(IMod)
+#pragma import(IModDiv)
+#pragma import(Permute)
+#pragma import(Get)
