@@ -21,7 +21,7 @@ function PRNG_Apply(_dst, _params={ })
   GPU_SetUniform_Float2("FSH_Range", _lower, _upper);
   GPU_SetUniform_FloatN("FSH_PRNG_Meta", _prng.surfaceMeta);
   GPU_SetTarget(_dst);
-  GPU_Dispatch_Full(_prng);
+  GPU_Dispatch_WholeSurface(_prng);
   GPU_EndTarget();
   GPU_EndShader();
   GPU_EndState();

@@ -29,7 +29,7 @@ function __Tensor__OpMatMul(_lhs, _rhs, _reduceCount)
   GPU_SetUniform_Float1("FSH_IndexDivisor", _lhsReducedSize);
   GPU_SetUniform_Float1("FSH_ReduceCount",  _reduceCount);
   GPU_SetTarget(self);
-  GPU_Dispatch_Full();
+  GPU_Dispatch();
   GPU_EndTarget();
   GPU_EndShader();
   GPU_EndState();
