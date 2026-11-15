@@ -28,7 +28,7 @@ function AutoGrad_Relu(_src) : AutoGrad_Unary(_src) constructor
     if (_src.grad != undefined)
     {
       Tensor_Workspace_Begin();
-      var _tempA = Tensor_Workspace_Get(_src.itemCount);
+      var _tempA = Tensor_Workspace_Get(_src.shape);
       _tempA.OpGt(_src, 0.0);
       _src.grad.OpMul(_tempA, self.grad);
       Tensor_Workspace_End();

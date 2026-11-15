@@ -25,13 +25,12 @@ function AutoGrad_Div(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
   {
     var _lhs = self.input[0];
     var _rhs = self.input[1];
-    var _capacity = _lhs.itemCount;
     
     // dx : (1 / y)
     if (_lhs.grad != undefined)
     {
       Tensor_Workspace_Begin();
-      var _tempA = Tensor_Workspace_Get(_capacity);
+      var _tempA = Tensor_Workspace_Get(self.shape);
       _tempA.OpInv(_rhs);
       _lhs.grad.OpMul(_tempA, self.grad);
       Tensor_Workspace_End();
@@ -42,8 +41,8 @@ function AutoGrad_Div(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
     if (self.input[1].grad != undefined)
     {
       Tensor_Workspace_Begin();
-      var _tempA = Tensor_Workspace_Get(_capacity);
-      var _tempB = Tensor_Workspace_Get(_capacity);
+      var _tempA = Tensor_Workspace_Get(self.shape);
+      var _tempB = Tensor_Workspace_Get(self.shape);
       _tempA.OpSqr(_rhs);
       _tempB.OpDiv(_lhs, _tempA);
       _tempA.OpNeg(_tempB);

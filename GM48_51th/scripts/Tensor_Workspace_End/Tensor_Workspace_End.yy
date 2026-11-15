@@ -6,7 +6,7 @@
   "name":"Tensor_Workspace_End",
   "parent":{
     "name":"Workspaces",
-    "path":"folders/Neural Network/Tensor/Workspaces.yy",
+    "path":"folders/Neural Network/Workspaces.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

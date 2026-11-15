@@ -28,8 +28,8 @@ function AutoGrad_Cos(_src) : AutoGrad_Unary(_src) constructor
     if (_src.grad != undefined)
     {
       Tensor_Workspace_Begin();
-      var _tempA = Tensor_Workspace_Get(_src.itemCount);
-      var _tempB = Tensor_Workspace_Get(_src.itemCount);
+      var _tempA = Tensor_Workspace_Get(_src.shape);
+      var _tempB = Tensor_Workspace_Get(_src.shape);
       _tempA.OpSin(_src);
       _tempB.OpNeg(_tempA);
       _src.grad.OpMul(_tempB, self.grad);

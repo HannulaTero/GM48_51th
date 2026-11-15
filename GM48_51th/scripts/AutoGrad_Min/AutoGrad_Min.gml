@@ -25,13 +25,12 @@ function AutoGrad_Min(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
   {
     var _lhs = self.input[0];
     var _rhs = self.input[1];
-    var _capacity = _lhs.itemCount;
     
     // dx : (x <= y) ? 1 : 0
     if (_lhs.grad != undefined)
     {
       Tensor_Workspace_Begin();
-      var _tempA = Tensor_Workspace_Get(_capacity);
+      var _tempA = Tensor_Workspace_Get(self.shape);
       _tempA.OpLtEq(_lhs, _rhs);
       _lhs.grad.OpMul(_tempA, self.grad);
       Tensor_Workspace_End();
@@ -42,7 +41,7 @@ function AutoGrad_Min(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
     if (_rhs.grad != undefined)
     {
       Tensor_Workspace_Begin();
-      var _tempA = Tensor_Workspace_Get(_capacity);
+      var _tempA = Tensor_Workspace_Get(self.shape);
       _tempA.OpGt(_lhs, _rhs);
       _rhs.grad.OpMul(_lhs, self.grad);
       Tensor_Workspace_End();

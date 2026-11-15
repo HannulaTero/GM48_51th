@@ -28,7 +28,7 @@ function AutoGrad_Tan(_src) : AutoGrad_Unary(_src) constructor
     if (_src.grad != undefined)
     {
       Tensor_Workspace_Begin();
-      var _tempA = Tensor_Workspace_Get(_src.itemCount);
+      var _tempA = Tensor_Workspace_Get(_src.shape);
       _tempA.OpUnary(_src, SHD_TensorDx_Tan);
       _src.grad.OpMul(_tempA, self.grad);
       Tensor_Workspace_End();

@@ -28,8 +28,8 @@ function AutoGrad_Log10(_src) : AutoGrad_Unary(_src) constructor
     if (_src.grad != undefined)
     {
       Tensor_Workspace_Begin();
-      var _tempA = Tensor_Workspace_Get(_src.itemCount);
-      var _tempB = Tensor_Workspace_Get(_src.itemCount);
+      var _tempA = Tensor_Workspace_Get(_src.shape);
+      var _tempB = Tensor_Workspace_Get(_src.shape);
       _tempA.OpScalarMul(_src, ln(10));
       _tempB.OpInv(_tempA);
       _src.grad.OpMul(_tempB, self.grad);

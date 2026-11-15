@@ -28,8 +28,8 @@ function AutoGrad_Inv(_src) : AutoGrad_Unary(_src) constructor
     if (_src.grad != undefined)
     {
       Tensor_Workspace_Begin();
-      var _tempA = Tensor_Workspace_Get(_src.itemCount);
-      var _tempB = Tensor_Workspace_Get(_src.itemCount);
+      var _tempA = Tensor_Workspace_Get(_src.shape);
+      var _tempB = Tensor_Workspace_Get(_src.shape);
       _tempA.OpSqr(_src);
       _tempB.OpInv(_tempA);
       _tempA.OpNeg(_tempB);

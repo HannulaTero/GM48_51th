@@ -42,7 +42,7 @@
     {"$GMFolder":"","%Name":"Op TensorMul","folderPath":"folders/Neural Network/Tensor/Op TensorMul.yy","name":"Op TensorMul","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Op Ternary","folderPath":"folders/Neural Network/Tensor/Op Ternary.yy","name":"Op Ternary","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Op Unary","folderPath":"folders/Neural Network/Tensor/Op Unary.yy","name":"Op Unary","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"Workspaces","folderPath":"folders/Neural Network/Tensor/Workspaces.yy","name":"Workspaces","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Workspaces","folderPath":"folders/Neural Network/Workspaces.yy","name":"Workspaces","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Utility","folderPath":"folders/Neural Network/Utility.yy","name":"Utility","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "ForcedPrefabProjectReferences":[],

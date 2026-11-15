@@ -45,13 +45,19 @@ function __Tensor__Reshape(_shape, _layout=undefined)
       self.surfaceLayout[0] = ceil(sqrt(self.itemCount));
       self.surfaceLayout[1] = ceil(self.itemCount / self.surfaceLayout[0]);
     }
-    else
+    else if (is_array(_layout) == true)
     {
-      self.surfaceLayout[0] = _layout[0];
-      self.surfaceLayout[1] = _layout[1];
-      if (self.itemCount > (_layout[0] * _layout[1]))
+      if (self.itemCount <= (_layout[0] * _layout[1]))
       {
-        throw("Given layout can't fit the shape!");
+        self.surfaceLayout[0] = _layout[0];
+        self.surfaceLayout[1] = _layout[1];
+      }
+      else
+      {
+        show_debug_message("Given layout can't fit the shape!");
+        show_debug_message(" -> Updating layout to fit.");
+        self.surfaceLayout[0] = ceil(sqrt(self.itemCount));
+        self.surfaceLayout[1] = ceil(self.itemCount / self.surfaceLayout[0]);
       }
     }
     
