@@ -10,8 +10,8 @@
   },
   "defaultScriptType":1,
   "Folders":[
-    {"$GMFolder":"","%Name":"File Handling","folderPath":"folders/File Handling.yy","name":"File Handling","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Debugging","folderPath":"folders/Debugging.yy","name":"Debugging","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"File Handling","folderPath":"folders/File Handling.yy","name":"File Handling","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Operation Clean","folderPath":"folders/Operation Clean.yy","name":"Operation Clean","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Operation Post","folderPath":"folders/Operation Post.yy","name":"Operation Post","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Operation Pre","folderPath":"folders/Operation Pre.yy","name":"Operation Pre","resourceType":"GMFolder","resourceVersion":"2.0",},
