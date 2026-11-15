@@ -27,7 +27,7 @@ function __Tensor__OpScalarSet(_value=0.0)
 */ 
 function __Tensor__OpScalarSetOne()
 {
-  self.OpSetScalar(1.0);
+  self.OpScalarSet(1.0);
 }
 
 
@@ -39,7 +39,7 @@ function __Tensor__OpScalarSetOne()
 */ 
 function __Tensor__OpScalarSetZero()
 {
-  self.OpSetScalar(0.0);
+  self.OpScalarSet(0.0);
 }
 
 
