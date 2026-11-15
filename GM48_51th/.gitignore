@@ -63,3 +63,10 @@ Build
 
 *.fsh_mod
 *.vsh_mod
+
+*.cache_vsh
+*.cache_fsh
+
+*.backup_vsh
+*.backup_fsh
+
