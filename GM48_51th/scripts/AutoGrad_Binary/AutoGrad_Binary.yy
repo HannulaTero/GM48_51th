@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"AutoGrad_Binary",
   "parent":{
-    "name":"AutoGrad",
-    "path":"folders/Neural Network/AutoGrad.yy",
+    "name":"Templates",
+    "path":"folders/Neural Network/AutoGrad/Templates.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

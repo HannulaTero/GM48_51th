@@ -82,6 +82,48 @@ function __Tensor__OpScalarDiv(_src, _value=0.0)
 
 
 /**
+* Checks (tensor == value).
+* 
+* @context Tensor
+* @param {Struct.Tensor} _src
+* @param {Real} _value
+*/ 
+function __Tensor__OpScalarEq(_src, _value=0.0)
+{
+  self.OpScalar(_src, _value, SHD_TensorOp_ScalarEq);
+}
+
+
+
+/**
+* Checks (tensor > value).
+* 
+* @context Tensor
+* @param {Struct.Tensor} _src
+* @param {Real} _value
+*/ 
+function __Tensor__OpScalarGt(_src, _value=0.0)
+{
+  self.OpScalar(_src, _value, SHD_TensorOp_ScalarGt);
+}
+
+
+
+/**
+* Checks (tensor >= value).
+* 
+* @context Tensor
+* @param {Struct.Tensor} _src
+* @param {Real} _value
+*/ 
+function __Tensor__OpScalarGtEq(_src, _value=0.0)
+{
+  self.OpScalar(_src, _value, SHD_TensorOp_ScalarGtEq);
+}
+
+
+
+/**
 * Increments tensor by one.
 * 
 * @context Tensor
@@ -90,6 +132,34 @@ function __Tensor__OpScalarDiv(_src, _value=0.0)
 function __Tensor__OpScalarIncr(_src)
 {
   self.OpScalarAdd(_src, +1.0);
+}
+
+
+
+/**
+* Checks (tensor < value).
+* 
+* @context Tensor
+* @param {Struct.Tensor} _src
+* @param {Real} _value
+*/ 
+function __Tensor__OpScalarLt(_src, _value=0.0)
+{
+  self.OpScalar(_src, _value, SHD_TensorOp_ScalarLt);
+}
+
+
+
+/**
+* Checks (tensor <= value).
+* 
+* @context Tensor
+* @param {Struct.Tensor} _src
+* @param {Real} _value
+*/ 
+function __Tensor__OpScalarLtEq(_src, _value=0.0)
+{
+  self.OpScalar(_src, _value, SHD_TensorOp_ScalarLtEq);
 }
 
 
@@ -132,6 +202,20 @@ function __Tensor__OpScalarMin(_src, _value=0.0)
 function __Tensor__OpScalarMul(_src, _value=0.0)
 {
   self.OpScalar(_src, _value, SHD_TensorOp_ScalarMul);
+}
+
+
+
+/**
+* Checks (tensor != value).
+* 
+* @context Tensor
+* @param {Struct.Tensor} _src
+* @param {Real} _value
+*/ 
+function __Tensor__OpScalarNtEq(_src, _value=0.0)
+{
+  self.OpScalar(_src, _value, SHD_TensorOp_ScalarNtEq);
 }
 
 

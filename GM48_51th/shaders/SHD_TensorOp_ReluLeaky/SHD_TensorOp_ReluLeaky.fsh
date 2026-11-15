@@ -4,7 +4,7 @@
 
 float Operation(float src)
 {
-  return max(0.01, src);
+  return max(0.01 * src, src);
 }
 
 //=============================================================

@@ -22,18 +22,21 @@ function AutoGrad_Mul(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
   
   static Backward = function()
   {
+    var _lhs = self.input[0];
+    var _rhs = self.input[1];
+    
     // dx : y
-    if (self.input[0].grad != undefined)
+    if (_lhs.grad != undefined)
     {
-      self.input[0].grad.OpMul(self.input[1], self.grad);
-      self.input[0].Backward();
+      _lhs.grad.OpMul(_rhs, self.grad);
+      _lhs.Backward();
     }
     
     // dy : x
-    if (self.input[1].grad != undefined)
+    if (_rhs.grad != undefined)
     {
-      self.input[1].grad.OpMul(self.input[0], self.grad);
-      self.input[1].Backward();
+      _rhs.grad.OpMul(_lhs, self.grad);
+      _rhs.Backward();
     }
   };
   

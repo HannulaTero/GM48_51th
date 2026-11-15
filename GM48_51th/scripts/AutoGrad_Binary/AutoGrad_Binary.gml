@@ -7,7 +7,7 @@
 * @param {Struct.Tensor} _lhs
 * @param {Struct.Tensor} _rhs
 */ 
-function AutoGrad_Binary(_lhs, _rhs) : AutoGrad_AutoGrad() constructor
+function AutoGrad_Binary(_lhs, _rhs) : AutoGrad() constructor
 {
   //===========================================================
   // 
@@ -45,6 +45,8 @@ function AutoGrad_Binary(_lhs, _rhs) : AutoGrad_AutoGrad() constructor
   // Reshape the output tensor.
   self.output.Reshape(_lhs.shape);
   
+  
+  // Reshape the gradient tensor.
   if (self.grad != undefined)
   {
     self.grad.Reshape(_lhs.shape);

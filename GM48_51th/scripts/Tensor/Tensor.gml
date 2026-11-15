@@ -31,19 +31,28 @@ function Tensor(_shape=undefined, _hasGrad=true) constructor
   static Verify           = __Tensor__Verify;
   
   // Operations : General
+  static OpBinary     = __Tensor__OpBinary;
   static OpPermute    = __Tensor__OpPermute;
   static OpMatMul     = __Tensor__OpMatMul;
   static OpTensorMul  = __Tensor__OpTensorMul;
+  static OpUnary      = __Tensor__OpUnary;
   
   // Operations : Scalar.
+  static OpScalar         = __Tensor__OpScalar;
   static OpScalarAdd      = __Tensor__OpScalarAdd;
   static OpScalarClamp    = __Tensor__OpScalarClamp;
   static OpScalarDecr     = __Tensor__OpScalarDecr;
   static OpScalarDiv      = __Tensor__OpScalarDiv;
+  static OpScalarEq       = __Tensor__OpScalarEq;
+  static OpScalarGt       = __Tensor__OpScalarGt;
+  static OpScalarGtEq     = __Tensor__OpScalarGtEq;
+  static OpScalarLt       = __Tensor__OpScalarLt;
+  static OpScalarLtEq     = __Tensor__OpScalarLtEq;
   static OpScalarIncr     = __Tensor__OpScalarIncr;
   static OpScalarMax      = __Tensor__OpScalarMax;
   static OpScalarMin      = __Tensor__OpScalarMin;
   static OpScalarMul      = __Tensor__OpScalarMul;
+  static OpScalarNtEq     = __Tensor__OpScalarNtEq;
   static OpScalarPow      = __Tensor__OpScalarPow;
   static OpScalarSet      = __Tensor__OpScalarSet;
   static OpScalarSetOne   = __Tensor__OpScalarSetOne;

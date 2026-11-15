@@ -22,18 +22,21 @@ function AutoGrad_Mean(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
   
   static Backward = function()
   {
+    var _lhs = self.input[0];
+    var _rhs = self.input[1];
+    
     // dx : 0.5
-    if (self.input[0].grad != undefined)
+    if (_lhs.grad != undefined)
     {
-      self.input[0].grad.OpSet(self.grad);
-      self.input[0].Backward();
+      _lhs.grad.OpScalarMul(self.grad, 0.5);
+      _lhs.Backward();
     }
     
     // dx : 0.5
-    if (self.input[1].grad != undefined)
+    if (_rhs.grad != undefined)
     {
-      self.input[1].grad.OpSet(self.grad);
-      self.input[1].Backward();
+      _rhs.grad.OpScalarMul(self.grad, 0.5);
+      _rhs.Backward();
     }
   };
   

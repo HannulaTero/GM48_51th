@@ -3,7 +3,7 @@
 /**
 * 
 */ 
-function AutoGrad_AutoGrad() constructor
+function AutoGrad() constructor
 {
   //===========================================================
   // 

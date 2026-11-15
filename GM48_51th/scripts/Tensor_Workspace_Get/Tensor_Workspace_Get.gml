@@ -3,6 +3,8 @@
 /**
 * Returns usable workspace-tensor in current workspace-scope.
 * Reuses old ones, or creates new one if necessary.
+* 
+* @returns {Struct.Tensor}
 */ 
 function Tensor_Workspace_Get(_capacity)
 {
@@ -15,4 +17,6 @@ function Tensor_Workspace_Get(_capacity)
     
   _tensor.ReserveCapacity(_capacity);
   array_push(array_last(scopes), _tensor);
+  
+  return _tensor;
 }

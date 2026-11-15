@@ -22,18 +22,21 @@ function AutoGrad_Sub(_lhs, _rhs) : AutoGrad_Binary(_lhs, _rhs) constructor
   
   static Backward = function()
   {
+    var _lhs = self.input[0];
+    var _rhs = self.input[1];
+    
     // dx : 1.0
-    if (self.input[0].grad != undefined)
+    if (_lhs.grad != undefined)
     {
-      self.input[0].grad.OpSet(self.grad);
-      self.input[0].Backward();
+      _lhs.grad.OpSet(self.grad);
+      _lhs.Backward();
     }
     
     // dy : -1.0
-    if (self.input[1].grad != undefined)
+    if (_rhs.grad != undefined)
     {
-      self.input[1].grad.OpNeg(self.grad);
-      self.input[1].Backward();
+      _rhs.grad.OpNeg(self.grad);
+      _rhs.Backward();
     }
   };
   
