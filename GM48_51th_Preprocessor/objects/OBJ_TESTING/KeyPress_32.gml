@@ -19,4 +19,3 @@ DebugTimingPop("Searched specific file-types: {0} ms");
 
 
 instance_create_depth(0, 0, 0, OBJ_Preprocessor_Pre_LoadShaderFiles);
-instance_destroy();
