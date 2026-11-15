@@ -31,7 +31,15 @@ if (keyboard_check_pressed(vk_space) == true)
   show_debug_message(self.lhs.grad.ArrayPush());
   show_debug_message(self.rhs.grad.ArrayPush());
   
-  
+  Tensor_Workspace_Begin();
+  var _tempA = Tensor_Workspace_Get(self.lhs.shape);
+  var _tempB = Tensor_Workspace_Get(_tempA.shape);
+  _tempA.OpPermuteMatrix(self.lhs, self.lhs.shape[0]);
+  _tempB.OpPermuteMatrix(_tempA, _tempA.shape[0]);
+  show_debug_message(self.lhs.ArrayPush());
+  show_debug_message(_tempA.ArrayPush());
+  show_debug_message(_tempB.ArrayPush());
+  Tensor_Workspace_End();
 }
 
 
