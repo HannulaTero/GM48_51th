@@ -1,5 +1,5 @@
 # Neural Network Thingy
-**GM48 51th game jam entry - A Neural Network library.**
+**An entry for 51th GM48 game jam - A Neural Network library.**
 
 This is not meant to be "proper" library you would want to use, it was just something I had fun writing during the jam.
 
