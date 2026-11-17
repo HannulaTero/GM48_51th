@@ -17,6 +17,8 @@ Also recorded whole thing, 13 GB of videos me talking and coding the thing, mumb
 
 [Video of me rambling about the making the library during the jam](https://www.youtube.com/watch?v=Jff18i6RiDE&t=605s)
 
+[Timelapse video of me participating the jam - writing the code](https://youtu.be/gSmdph97T_c)
+
 ## Some images of contents
 <img width="515" alt="00" src="https://github.com/user-attachments/assets/49d5906c-d246-4aa1-945c-6380c3633f31" />
 <img width="512" alt="01" src="https://github.com/user-attachments/assets/146f8bcd-e903-40b0-bd64-6f23351058a7" />
